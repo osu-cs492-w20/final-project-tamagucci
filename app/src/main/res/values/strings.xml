@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Ultimate Dex</string>
+    <string name="search_box_hint">Pokemon...</string>
+    <string name="search_button_text">GO!</string>
 </resources>

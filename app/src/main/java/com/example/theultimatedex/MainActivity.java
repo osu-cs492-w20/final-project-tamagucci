@@ -2,7 +2,9 @@ package com.example.theultimatedex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,5 +28,22 @@ public class MainActivity extends AppCompatActivity {
         mAllPokemon = findViewById(R.id.tv_all_select);
         mFavePokemon = findViewById(R.id.tv_fave_select);
 
+        mSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearch();
+            }
+        });
+
     }
+
+
+    public void openSearch() {
+
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+
+    }
+
+
 }
