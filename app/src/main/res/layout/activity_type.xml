@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Types"
+        android:fontFamily="monospace"
+        android:textSize="50sp"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_normal_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Normal"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_fighting_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fighting"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_flying_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Flying"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_poison_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Poison"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_ground_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ground"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_rock_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rock"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_bug_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bug"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_ghost_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ghost"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_steel_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Steel"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_fire_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fire"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+
+            <TextView
+                android:id="@+id/tv_water_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Water"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_grass_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grass"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_electric_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Electric"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_psychic_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Psychic"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_ice_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ice"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_dragon_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dragon"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_dark_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dark"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_fairy_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fairy"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+
+
+
+
+

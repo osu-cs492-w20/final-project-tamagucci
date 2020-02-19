@@ -16,16 +16,17 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:paddingTop="13dp"
+
             android:src="@drawable/ic_action_search"
-            android:outlineSpotShadowColor="@color/colorPrimaryDark"/>
+            android:layout_marginTop="25dp"/>
 
         <EditText
             android:id="@+id/et_search_box"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-
+            android:textSize="26sp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
 
             android:textColorHint="@color/colorAccent"
             android:hint="@string/search_box_hint"/>
@@ -34,8 +35,11 @@
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/share_rounded_corner_with_border"
             android:text="@string/search_button_text"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"
+            />
 
     </LinearLayout>
 

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generations"
+        android:fontFamily="monospace"
+        android:textSize="50sp"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_gen1_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation I"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen2_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation II"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen3_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation III"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen4_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation IV"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen5_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation V"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen6_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation VI"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen7_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation VII"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+            <TextView
+                android:id="@+id/tv_gen8_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generation VIII"
+                android:fontFamily="monospace"
+                android:textSize="30sp"
+                android:background="@drawable/share_rounded_corner_with_border"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="15dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+

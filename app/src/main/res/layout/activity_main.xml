@@ -22,15 +22,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:padding="15dp"
+        android:padding="15dp" />
 
-
-    />
     <TextView
         android:id="@+id/tv_gen_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search by Gen"
+        android:text="Search by Generation"
         android:fontFamily="monospace"
         android:textSize="30sp"
         android:background="@drawable/share_rounded_corner_with_border"

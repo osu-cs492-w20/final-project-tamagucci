@@ -35,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mGenSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGenSelect();
+            }
+        });
+
+        mTypeSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openTypeSelect();
+            }
+        });
+
     }
 
 
@@ -43,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
 
+    }
+
+    public void openGenSelect() {
+
+        Intent intent = new Intent(this, GenActivity.class);
+        startActivity(intent);
+    }
+
+    public void openTypeSelect() {
+
+        Intent intent = new Intent(this, TypeActivity.class);
+        startActivity(intent);
     }
 
 
