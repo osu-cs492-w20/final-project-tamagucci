@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#d7092e</color>              <!-- "Crimson" -->
+    <color name="colorPrimaryDark">#02312d</color>          <!-- "Dark Slate Grey" -->
+    <color name="colorAccent">#dad7d8</color>               <!-- "Gainsboro" -->
 </resources>
