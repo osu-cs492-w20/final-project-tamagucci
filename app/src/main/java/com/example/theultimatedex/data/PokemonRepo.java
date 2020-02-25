@@ -4,5 +4,16 @@ import java.io.Serializable;
 
 public class PokemonRepo implements Serializable {
 
-    // need to look at what the stuff is passed back to save
+    // Info to retrieve from API of each pokemon
+    // species {}
+    //      - name
+    // sprites {}
+    //      - front_default
+    // stats [ {} ] ( for each stat )
+    //      - base stat
+    //      - stat {}
+    //          - name
+    // types [ {} ] ( for each potential type )
+    //      - type {}
+    //          - name
 }
