@@ -25,6 +25,9 @@ public class PokeUtils {
         // need to validate that whatever is passed gets sent to lowercase
         String query = q.toLowerCase();
 
+        // need to validate that whatever is passed gets sent to lowercase
+        String query = q.toLowerCase();
+
         String url = Uri.parse(POKE_API_BASE_URL).buildUpon()
                 .appendPath(POKE_POKE_PARAM)
                 .appendPath(query)
