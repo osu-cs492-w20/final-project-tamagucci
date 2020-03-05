@@ -24,12 +24,13 @@
             android:id="@+id/et_search_box"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:textSize="26sp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:hint="@string/search_box_hint"
 
+            android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent"
-            android:hint="@string/search_box_hint"/>
+            android:textSize="26sp" />
 
         <Button
             android:id="@+id/btn_search"
