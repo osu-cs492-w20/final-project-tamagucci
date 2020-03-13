@@ -38,7 +38,7 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
     }
 
     public void loadSearchResults(String query) {
-        Log.d("UltimateDex/PSRepositor", "Loading " + query + "into PokeSearchAsyncTask.");
+        Log.d("UltimateDex/PSRepositor", "Loading " + query + " into PokeSearchAsyncTask.");
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;
             String url = PokeUtils.buildPokeURL(query);
