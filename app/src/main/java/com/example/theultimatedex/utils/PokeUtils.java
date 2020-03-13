@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PokeUtils {
 
-    private final static String POKE_API_BASE_URL = "https://pokeapi.co/api/v2/";
+    private final static String POKE_API_BASE_URL = "http://pokeapi.co/api/v2/pokemon";
     private final static String POKE_POKE_PARAM = "pokemon/";
 
     static class PokeSearchResults {
@@ -23,14 +23,10 @@ public class PokeUtils {
     public static String buildPokeURL(String q) {
 
         // need to validate that whatever is passed gets sent to lowercase
-        //String query = q.toLowerCase();
-
-        // need to validate that whatever is passed gets sent to lowercase
-        //String query = q.toLowerCase();
-
+        String query = q.toLowerCase();
+        Log.d("UltimateDex/PokeUtils", "q = " + q + " | query = " + query);
         String url = Uri.parse(POKE_API_BASE_URL).buildUpon()
-                .appendPath(POKE_POKE_PARAM)
-                .appendPath(q)
+                .appendPath(query)
                 .build()
                 .toString();
 

@@ -20,6 +20,7 @@ public class PokeSearchAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     public PokeSearchAsyncTask(Callback callback) {
+        Log.d("UltimateDex/PSAsyncTask", "Callback = " + callback);
         mCallback = callback;
     }
 
@@ -29,11 +30,12 @@ public class PokeSearchAsyncTask extends AsyncTask<String, Void, String> {
         String url = strings[0];
         String searchResults = null;
         try {
+            Log.d("UltimateDex/PSAsyncTask", "Doing in Background: doHttpGet of url " + url);
             searchResults = NetworkUtils.doHttpGet(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        Log.d("UltimateDex/PSAsyncTask", "Doing in Background: after doHttpGet of url " + url);
         return searchResults;
     }
 
