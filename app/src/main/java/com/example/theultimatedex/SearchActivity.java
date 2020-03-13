@@ -86,6 +86,7 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
 
     private void doPokeSearch(String searchQuery) {
 
+
         //String url = PokeUtils.buildPokeURL(searchQuery);
         Log.d("UltimateDex/SearchActiv", "Searching For: " + searchQuery);
         mViewModel.loadResults(searchQuery);
@@ -94,6 +95,9 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
 
     @Override
     public void onPokemonItemClick(PokemonRepo pokemonRepo) {
+
+        //String url = PokeUtils.buildPokeURL(searchQuery);
+
 
     }
 }
