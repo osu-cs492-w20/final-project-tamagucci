@@ -37,6 +37,15 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <!-- Pokemon View Activity -->
+        <activity
+            android:name=".PokeItemDetailActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PokeActivity" />
+        </activity>
+
         <!-- Search Activity -->
         <activity
             android:name=".SearchActivity"

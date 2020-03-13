@@ -1,5 +1,6 @@
 package com.example.theultimatedex;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -27,7 +28,7 @@ public class PokeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG,"Prushka: PokeActivity onCreate");
+        Log.d(TAG,"Prushka: onCreate");
         setContentView(R.layout.poke_recycle_layout);
         mTypNum = "0";
         mGenNum = "0";
@@ -35,12 +36,14 @@ public class PokeActivity extends AppCompatActivity {
         mActivityType = getIntent().getStringExtra(POKE_RV);
         // Fill out appropriate forms for the type of activity.
         switch(mActivityType) {
-            case "GEN":
+            case "GEN_AC":
                 mGenNum = getIntent().getStringExtra(GEN_AC);
+                Log.d(TAG,"GEN_AC");
                 // Generation API call here.
                 break;
-            case "TYP":
+            case "TYP_AC":
                 mTypNum = getIntent().getStringExtra(TYP_AC);
+                Log.d(TAG,"TYP_AC");
                 // Type API call here.
                 break;
             default:
@@ -49,6 +52,9 @@ public class PokeActivity extends AppCompatActivity {
         // Begin creating new recycle-view to display the data.
         mPokeAdapter = new PokeAdapter();
         mPokeRV = findViewById(R.id.poke_RV);
+        Intent intent = new Intent(this,PokeItemDetailActivity.class);
+        intent.putExtra("POKE_DT","HI!");
+        startActivity(intent);
         //mPokeProgress = findViewById(R.id.);
         //mPokeError = findViewById();
     }

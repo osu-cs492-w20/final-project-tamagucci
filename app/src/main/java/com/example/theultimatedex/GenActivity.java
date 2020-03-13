@@ -81,7 +81,7 @@ public class GenActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PokeActivity.class);
         Bundle extras = new Bundle();
         // Add the Extras to the bundle.
-        extras.putString(POKE_RV,"GEN");
+        extras.putString(POKE_RV,"GEN_AC");
         extras.putString(GEN_AC, genNum.toString());
         // Put the extras.
         intent.putExtras(extras);
