@@ -1,5 +1,7 @@
 package com.example.theultimatedex;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -22,9 +24,15 @@ public class PokeSearchViewModel extends ViewModel {
     }
 
     public void loadResults(String query) {
-
+        Log.d("UltimateDex/PSViewModel", "Passing" + query + "to loadSearchResults in PokeSearchRepository");
         mRepository.loadSearchResults(query);
     }
+
+    public LiveData<List<PokemonRepo>> getResults() {
+        return mResults;
+    }
+
+
 
 
 }

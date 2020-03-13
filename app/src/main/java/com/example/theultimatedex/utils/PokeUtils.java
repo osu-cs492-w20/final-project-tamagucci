@@ -23,18 +23,18 @@ public class PokeUtils {
     public static String buildPokeURL(String q) {
 
         // need to validate that whatever is passed gets sent to lowercase
-        String query = q.toLowerCase();
+        //String query = q.toLowerCase();
 
         // need to validate that whatever is passed gets sent to lowercase
         //String query = q.toLowerCase();
 
         String url = Uri.parse(POKE_API_BASE_URL).buildUpon()
                 .appendPath(POKE_POKE_PARAM)
-                .appendPath(query)
+                .appendPath(q)
                 .build()
                 .toString();
 
-        Log.d("Kira Tag", "Executing with url: " + url);
+        Log.d("UltimateDex/PokeUtils", "Returning with url: " + url);
         return url;
     }
 

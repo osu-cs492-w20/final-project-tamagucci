@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class PokemonRepo implements Serializable {
 
-    public int id;
+    public String id;
     public String name;
     public ArrayList<BaseStats> stats;
 

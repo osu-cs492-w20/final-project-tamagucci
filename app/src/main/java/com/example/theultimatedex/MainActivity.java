@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        Log.d("UltimateDex/MainActivit", "Starting Activity");
         mSearch = findViewById(R.id.tv_search_select);
         mGenSearch = findViewById(R.id.tv_gen_select);
         mTypeSearch = findViewById(R.id.tv_type_select);
@@ -53,20 +54,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openSearch() {
-
+        Log.d("UltimateDex/MainActivit", "Opening Search Activity");
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
 
     }
 
     public void openGenSelect() {
-
+        Log.d("UltimateDex/MainActivit", "Opening Gen Activity");
         Intent intent = new Intent(this, GenActivity.class);
         startActivity(intent);
     }
 
     public void openTypeSelect() {
-
+        Log.d("UltimateDex/MainActivit", "Opening Type Activity");
         Intent intent = new Intent(this, TypeActivity.class);
         startActivity(intent);
     }

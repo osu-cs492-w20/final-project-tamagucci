@@ -1,6 +1,7 @@
 package com.example.theultimatedex.data;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
@@ -42,7 +43,9 @@ public class PokeSearchAsyncTask extends AsyncTask<String, Void, String> {
         List<PokemonRepo> searchResults = null;
 
         if (s != null) {
+
             searchResults = PokeUtils.parseSearchResults(s);
+            Log.d("UltimateDex/PSAsyncTask", "Parsing Results" + s);
         }
         mCallback.onSearchFinished(searchResults);
     }

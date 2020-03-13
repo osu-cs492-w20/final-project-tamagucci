@@ -1,5 +1,6 @@
 package com.example.theultimatedex.data;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -16,6 +17,8 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
     // If we want to implement loading status
     //private MutableLiveData<Status> mLoadingStatus;
 
+    private String mCurrentQuery;
+
     public PokeSearchRepository() {
         mResults = new MutableLiveData<>();
         mResults.setValue(null);
@@ -30,11 +33,23 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
         mResults.setValue(searchResults);
     }
 
-    public void loadSearchResults(String query) {
+    private boolean shouldExecuteSearch(String query) {
+        return !TextUtils.equals(query, mCurrentQuery);
+    }
 
-        String url = PokeUtils.buildPokeURL(query);
-        Log.d("Kira Tag", "executing search with url: " + url);
-        new PokeSearchAsyncTask(this).execute(url);
+    public void loadSearchResults(String query) {
+        Log.d("UltimateDex/PSRepositor", "Loading " + query + "into PokeSearchAsyncTask.");
+        if (shouldExecuteSearch(query)) {
+            mCurrentQuery = query;
+            String url = PokeUtils.buildPokeURL(query);
+            mResults.setValue(null);
+            Log.d("UltimateDex/PSRepositor", "Executing search with url: " + url);
+            new PokeSearchAsyncTask(this).execute(url);
+        }
+        else {
+            Log.d("UltimateDex/Repository", "Using Cached Search Results");
+        }
+
 
     }
 }
