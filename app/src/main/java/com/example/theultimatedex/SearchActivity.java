@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void doPokeSearch(String searchQuery) {
 
-        //String url = PokeUtils.buildPokeURL(searchQuery);
+        String url = PokeUtils.buildPokeURL(searchQuery);
 
     }
 }
