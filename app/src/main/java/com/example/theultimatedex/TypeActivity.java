@@ -37,16 +37,137 @@ public class TypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate");
         setContentView(R.layout.activity_type);
+        // Init the views.
         mTyp1 = findViewById(R.id.tv_normal_select);
+        mTyp2 = findViewById(R.id.tv_fighting_select);
+        mTyp3 = findViewById(R.id.tv_flying_select);
+        mTyp4 = findViewById(R.id.tv_poison_select);
+        mTyp5 = findViewById(R.id.tv_ground_select);
+        mTyp6 = findViewById(R.id.tv_rock_select);
+        mTyp7 = findViewById(R.id.tv_bug_select);
+        mTyp8 = findViewById(R.id.tv_ghost_select);
+        mTyp9 = findViewById(R.id.tv_steel_select);
+        mTyp10 = findViewById(R.id.tv_fire_select);
+        mTyp11 = findViewById(R.id.tv_water_select);
+        mTyp12 = findViewById(R.id.tv_grass_select);
+        mTyp13 = findViewById(R.id.tv_electric_select);
+        mTyp14 = findViewById(R.id.tv_psychic_select);
+        mTyp15 = findViewById(R.id.tv_ice_select);
+        mTyp16 = findViewById(R.id.tv_dragon_select);
+        mTyp17 = findViewById(R.id.tv_dark_select);
+        mTyp18 = findViewById(R.id.tv_fairy_select);
+        // Add the listeners.
         mTyp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPokeRV("normal");
             }
         });
+        mTyp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("fighting");
+            }
+        });
+        mTyp3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("flying");
+            }
+        });
+        mTyp4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("poison");
+            }
+        });
+        mTyp5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("ground");
+            }
+        });
+        mTyp6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("rock");
+            }
+        });
+        mTyp7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("bug");
+            }
+        });
+        mTyp8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("ghost");
+            }
+        });
+        mTyp9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("steel");
+            }
+        });
+        mTyp10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("fire");
+            }
+        });
+        mTyp11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("water");
+            }
+        });
+        mTyp12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("grass");
+            }
+        });
+        mTyp13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("electric");
+            }
+        });
+        mTyp14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("psychic");
+            }
+        });
+        mTyp15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("ice");
+            }
+        });
+        mTyp16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("dragon");
+            }
+        });
+        mTyp17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("dark");
+            }
+        });
+        mTyp18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPokeRV("fairy");
+            }
+        });
     }
     public void showPokeRV(String type) {
-        Log.d(TAG,"Prushka: showPokeRV!");
+        Log.d(TAG,"Prushka: showPokeRV! Type: " + type);
         Intent intent = new Intent(this, PokeActivity.class);
         Bundle extras = new Bundle();
         // Add the Extras to the bundle.
