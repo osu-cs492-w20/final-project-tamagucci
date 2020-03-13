@@ -96,8 +96,13 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
     @Override
     public void onPokemonItemClick(PokemonRepo pokemonRepo) {
 
-        //String url = PokeUtils.buildPokeURL(searchQuery);
 
+        // Take to new activity
+        /*
+        Intent intent = new Intent(this, RepoDetailActivity.class);
+        intent.putExtra(RepoDetailActivity.EXTRA_GITHUB_REPO, repo);
+        startActivity(intent);
+         */
 
     }
 }
