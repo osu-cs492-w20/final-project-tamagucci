@@ -11,6 +11,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
     private static final String POKE_DT = "POKE_DT";
 
+    public static final String EXTRA_POKEMON_REPO = "PokemonRepo";
+
     private String mPokeItemString;
 
     @Override

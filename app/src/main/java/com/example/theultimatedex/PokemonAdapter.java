@@ -79,8 +79,8 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonI
 
                 // *** SHARED PREFS NEED TO GO IN HERE ***
                 Log.d("UltimateDex/PokemonAdap","Pokemon Number = " + pokemonRepo.id);
+                String pokemonNumber = "#" + PadLeft(pokemonRepo.id,'0',3);
 
-                String pokemonNumber = pokemonRepo.id;
                 mPokemonNumberTV.setText(pokemonNumber);
 
             /*
@@ -97,6 +97,18 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonI
         public void onClick(View v) {
             PokemonRepo pokemonRepo = mPokemonItems.get(getAdapterPosition());
             mPokemonItemClickListener.onPokemonItemClick(pokemonRepo);
+        }
+
+        String PadLeft(String input, Character PadChar, int ToLength){
+            int LenDiff = ToLength - input.length();
+            String output = "";
+            if (LenDiff > 0) {
+                for(int i=0; i < LenDiff;i++){
+                    output += PadChar;
+                }
+            }
+            output += input;
+            return output;
         }
     }
 

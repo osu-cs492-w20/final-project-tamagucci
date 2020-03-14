@@ -15,23 +15,36 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
     private MutableLiveData<List<PokemonRepo>> mResults;
 
     // If we want to implement loading status
-    //private MutableLiveData<Status> mLoadingStatus;
+    private MutableLiveData<Status> mLoadingStatus;
 
     private String mCurrentQuery;
 
     public PokeSearchRepository() {
         mResults = new MutableLiveData<>();
         mResults.setValue(null);
+
+        mLoadingStatus = new MutableLiveData<>();
+        mLoadingStatus.setValue(Status.SUCCESS);
     }
 
     public LiveData<List<PokemonRepo>> getSearchResults() {
         return mResults;
     }
 
+    public LiveData<Status> getLoadingStatus() {
+        return mLoadingStatus;
+    }
+
     @Override
     public void onSearchFinished(List<PokemonRepo> searchResults) {
         Log.d("UltimateDex/PSRepositor", "onSearchFinished - ");
         mResults.setValue(searchResults);
+        if(searchResults != null) {
+            mLoadingStatus.setValue(Status.SUCCESS);
+        }
+        else {
+            mLoadingStatus.setValue(Status.ERROR);
+        }
     }
 
     private boolean shouldExecuteSearch(String query) {
