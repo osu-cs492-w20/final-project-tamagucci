@@ -21,6 +21,8 @@ public class GenActivity extends AppCompatActivity {
     private TextView mGen4;
     private TextView mGen5;
     private TextView mGen6;
+    private TextView mGen7;
+    private TextView mGen8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class GenActivity extends AppCompatActivity {
         mGen4 = findViewById(R.id.tv_gen4_select);
         mGen5 = findViewById(R.id.tv_gen5_select);
         mGen6 = findViewById(R.id.tv_gen6_select);
+        mGen7 = findViewById(R.id.tv_gen7_select);
+        mGen8 = findViewById(R.id.tv_gen8_select);
+
         mGen1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

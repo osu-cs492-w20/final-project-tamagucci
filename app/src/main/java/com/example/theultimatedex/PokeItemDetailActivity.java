@@ -54,6 +54,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
 
     private void fillInLayout(PokemonRepo pokemonRepo) {
+
         repoIDTV.setText(mRepo.id);
 
         String pokemonName = mRepo.name.substring(0, 1).toUpperCase() + mRepo.name.substring(1).toLowerCase();

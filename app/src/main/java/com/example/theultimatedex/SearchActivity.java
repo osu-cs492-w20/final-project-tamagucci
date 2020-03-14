@@ -83,7 +83,9 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
                 if (status == Status.LOADING) {
                     mLoadingIndicatorPB.setVisibility(View.VISIBLE);
                 }
+                /*
                 else if (status == Status.SUCCESS) {
+                    Log.d("SPECIAL TEST", "Success!!");
                     mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
                     mPokemonItemsRV.setVisibility(View.VISIBLE);
                     mErrorMessageTV.setVisibility(View.INVISIBLE);
@@ -92,6 +94,20 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
                     mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
                     mPokemonItemsRV.setVisibility(View.INVISIBLE);
                     mErrorMessageTV.setVisibility(View.VISIBLE);
+                }
+
+                 */
+                else if(status == Status.ERROR) {
+                    Log.d("SPECIAL TEST", "Error!!");
+                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
+                    mPokemonItemsRV.setVisibility(View.INVISIBLE);
+                    mErrorMessageTV.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Log.d("SPECIAL TEST", "Success!!");
+                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
+                    mPokemonItemsRV.setVisibility(View.VISIBLE);
+                    mErrorMessageTV.setVisibility(View.INVISIBLE);
                 }
             }
         });
