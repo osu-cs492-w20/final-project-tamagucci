@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -21,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.Status;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
 
     private RecyclerView mPokemonItemsRV;
     private ProgressBar mLoadingIndicatorPB;
-    private TextView mLoadingErrorMessageTV;
+    private TextView mErrorMessageTV;
 
     private PokemonAdapter mPokemonAdapter;
     private Context context;
@@ -58,6 +60,9 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
         mPokemonItemsRV.setHasFixedSize(true);
         context = getApplicationContext();
 
+        mLoadingIndicatorPB = findViewById(R.id.pb_loading_indicator);
+        mErrorMessageTV = findViewById(R.id.tv_loading_error_message);
+
 
         // why not this? -- this now works when using the new vvvvvvvvvvvvvvvvvvvvv
         //mViewModel = new ViewModelProvider(this).get(PokeSearchViewModel.class);
@@ -71,6 +76,27 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
                 mPokemonAdapter.updateSearchResults(pokemonRepos);
             }
         });
+
+        mViewModel.getLoadingStatus().observe(this, new Observer<Status>() {
+            @Override
+            public void onChanged(Status status) {
+                if (status == Status.LOADING) {
+                    mLoadingIndicatorPB.setVisibility(View.VISIBLE);
+                }
+                else if (status == Status.SUCCESS) {
+                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
+                    mPokemonItemsRV.setVisibility(View.VISIBLE);
+                    mErrorMessageTV.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    mLoadingIndicatorPB.setVisibility(View.INVISIBLE);
+                    mPokemonItemsRV.setVisibility(View.INVISIBLE);
+                    mErrorMessageTV.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
 
         Button GOButton = findViewById(R.id.btn_search);
         GOButton.setOnClickListener(new View.OnClickListener() {
@@ -97,12 +123,11 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
     public void onPokemonItemClick(PokemonRepo pokemonRepo) {
 
 
-        // Take to new activity
-        /*
-        Intent intent = new Intent(this, RepoDetailActivity.class);
-        intent.putExtra(RepoDetailActivity.EXTRA_GITHUB_REPO, repo);
+        // Take to new activit
+        Intent intent = new Intent(this, PokeItemDetailActivity.class);
+        intent.putExtra(PokeItemDetailActivity.EXTRA_POKEMON_REPO, pokemonRepo);
         startActivity(intent);
-         */
+
 
     }
 }

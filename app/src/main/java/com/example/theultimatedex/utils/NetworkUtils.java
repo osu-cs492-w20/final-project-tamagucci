@@ -23,7 +23,9 @@ public class NetworkUtils {
         Response response = mHTTPClient.newCall(request).execute();
 
         try {
-            return response.body().string();
+            String s = response.body().string();
+            Log.d("UltimateDex/NetworkUtil", "Response Length = " + s.length());
+            return s;
         } finally {
             response.close();
         }
