@@ -37,12 +37,22 @@ public class PokeUtils {
 
     public static ArrayList<PokemonRepo> parseSearchResults(String json) {
         Gson gson = new Gson();
-        PokeSearchResults results = gson.fromJson(json, PokeSearchResults.class);
+        Log.d("UltimateDex/Pokeutils","json length: " + json.length());
+        //PokeSearchResults results = gson.fromJson(json, PokeSearchResults.class);
+        Log.d("UltimateDex/Pokeut/json","json = \n" + json);
+        //ArrayList<PokemonRepo> results = gson.fromJson(json, PokeSearchResults.class).items;
 
-        if (results != null && results.items != null) {
-            return results.items;
+        PokemonRepo Pokemon = gson.fromJson(json, PokemonRepo.class);
+        ArrayList<PokemonRepo> results = new ArrayList<PokemonRepo>();
+        results.add(Pokemon);
+
+        Log.d("UltimateDex/Pokeutils","parseSearchResults item 0 id");
+        if (results != null){ // && results.items != null) {
+            Log.d("UltimateDex/Pokeutils","results NOT NULL");
+            return results;
         }
         else {
+            Log.d("UltimateDex/Pokeutils","results IS NULL");
             return null;
         }
     }
