@@ -3,6 +3,7 @@ package com.example.theultimatedex;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
     private TextView repoIDTV;
     private ImageView mPokemonSpriteIV;
     private TextView mPokemonNameTV;
+    private TextView mPokemonType1;
+    //private TextView mPokemonType2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         repoIDTV = findViewById(R.id.poke_detail_num);
         mPokemonSpriteIV = findViewById(R.id.poke_detail_picture);
         mPokemonNameTV = findViewById(R.id.poke_detail_name);
+
+        //mPokemonType1.findViewById(R.id.poke_detail_type1);
+        //mPokemonType2.findViewById(R.id.poke_detail_type2);
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_POKEMON_REPO)) {
@@ -55,12 +61,39 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
     private void fillInLayout(PokemonRepo pokemonRepo) {
 
-        repoIDTV.setText(mRepo.id);
+        //repoIDTV.setText(mRepo.id);
+        String pokemonNumber = "No. " + PadLeft(pokemonRepo.id,'0',3);
+
+        repoIDTV.setText(pokemonNumber);
 
         String pokemonName = mRepo.name.substring(0, 1).toUpperCase() + mRepo.name.substring(1).toLowerCase();
         mPokemonNameTV.setText(pokemonName);
 
+        /*
+        if (mRepo.types[0].type[1].name != null) {
+            String pokemonType2 = mRepo.types[0].type[1].name.substring(0, 1).toUpperCase() + mRepo.types[0].type[1].name.substring(1).toLowerCase();
+            mPokemonType2.setText(pokemonType2);
+            mPokemonType2.setVisibility(View.VISIBLE);
+        }
+ */
+        //String pokemonType1 = mRepo.types[0].type[1].name.substring(0, 1).toUpperCase() + mRepo.types[0].type[1].name.substring(1).toLowerCase();
+        //mPokemonType1.setText(pokemonType1);
+
+
+
         String iconURL = PokeUtils.buildIconURL(pokemonRepo.sprites.front_default);
         Glide.with(this).load(iconURL).into(mPokemonSpriteIV);
+    }
+
+    String PadLeft(String input, Character PadChar, int ToLength){
+        int LenDiff = ToLength - input.length();
+        String output = "";
+        if (LenDiff > 0) {
+            for(int i=0; i < LenDiff;i++){
+                output += PadChar;
+            }
+        }
+        output += input;
+        return output;
     }
 }
