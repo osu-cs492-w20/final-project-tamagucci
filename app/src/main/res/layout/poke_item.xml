@@ -17,12 +17,12 @@
                 android:layout_weight="2"
                 android:orientation="vertical">
                 <ImageView
-                    android:id="@+id/iv_pokemon_sprite"
+                    android:id="@+id/iv_poke_sprite"
                     android:layout_margin="10dp"
                     android:layout_width="90dp"
                     android:layout_height="90dp" />
                 <TextView
-                    android:id="@+id/tv_pokemon_number"
+                    android:id="@+id/tv_poke_number"
                     android:layout_width="60dp"
                     android:layout_height="25dp"
                     android:gravity="center_vertical"

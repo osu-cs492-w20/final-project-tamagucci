@@ -1,20 +1,34 @@
 package com.example.theultimatedex;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PokeActivity extends AppCompatActivity {
+import com.example.theultimatedex.data.PokeSearchAsyncTask;
+import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.utils.NetworkUtils;
+import com.example.theultimatedex.utils.PokeUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeItemClickListener {
     private static final String TAG = PokeActivity.class.getSimpleName();
 
     private static final String POKE_RV = "POKE_RV";
     private static final String GEN_AC = "GEN_AC";
     private static final String TYP_AC = "TYP_AC";
+
+
 
     private String mActivityType;
     private String mTypNum;
@@ -35,27 +49,85 @@ public class PokeActivity extends AppCompatActivity {
         // Determine what type of activity this is.
         mActivityType = getIntent().getStringExtra(POKE_RV);
         // Fill out appropriate forms for the type of activity.
+        String url = null;
         switch(mActivityType) {
             case "GEN_AC":
                 mGenNum = getIntent().getStringExtra(GEN_AC);
                 Log.d(TAG,"GEN_AC");
                 // Generation API call here.
+                url = PokeUtils.buildPokeURL("generation/" + mGenNum);
+                loadPoke(url);
                 break;
             case "TYP_AC":
                 mTypNum = getIntent().getStringExtra(TYP_AC);
                 Log.d(TAG,"TYP_AC");
                 // Type API call here.
+                url = PokeUtils.buildPokeURL("type/" + mTypNum);
+                loadPoke(url);
                 break;
             default:
                 break;
         }
         // Begin creating new recycle-view to display the data.
-        mPokeAdapter = new PokeAdapter();
+        mPokeAdapter = new PokeAdapter(this);
         mPokeRV = findViewById(R.id.poke_RV);
+        mPokeRV.setAdapter(mPokeAdapter);
+        mPokeRV.setLayoutManager(new LinearLayoutManager(this));
+        //mPokeProgress = findViewById(R.id.);
+        //mPokeError = findViewById();
+
+    }
+
+    @Override
+    public void onPokeItemClick(PokemonRepo pokeRepo) {
         Intent intent = new Intent(this,PokeItemDetailActivity.class);
         intent.putExtra("POKE_DT","HI!");
         startActivity(intent);
-        //mPokeProgress = findViewById(R.id.);
-        //mPokeError = findViewById();
     }
+
+    public void loadPoke(String url) {
+        new PokeLoad().execute(url);
+    }
+
+    public class PokeLoad extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG,"Prushka: onPreExecute!");
+            //mPokeError.setVisibility(View.INVISIBLE);
+            //mPokeProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.d(TAG,"Prushka: Execute!");
+            String url = strings[0];
+            String pokeRes = null;
+            try {
+                pokeRes = NetworkUtils.doHttpGet(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG,"Prushka: results: " + pokeRes);
+            return pokeRes;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.d(TAG,"Prushka: onPostExecute!");
+
+            if (s != null) {
+                ArrayList<PokemonRepo> results = PokeUtils.parseSearchResults(s);
+                mPokeAdapter.updateSearchResults(results);
+                Log.d(TAG,"Prushka: Success!");
+            } else {
+                //mPokeError.setVisibility(View.VISIBLE);
+                //mPokeProgress.setVisibility(View.INVISIBLE);
+                Log.d(TAG,"Prushka: Failure!");
+            }
+        }
+    }
+
 }

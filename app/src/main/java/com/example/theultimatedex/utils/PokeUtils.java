@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class PokeUtils {
 
-    private final static String POKE_API_BASE_URL = "http://pokeapi.co/api/v2/pokemon";
+    private final static String POKE_API_BASE_URL = "http://pokeapi.co/api/v2/";
     private final static String POKE_POKE_PARAM = "pokemon/";
 
-    static class PokeSearchResults {
+    public static class PokeSearchResults {
 
         ArrayList<PokemonRepo> items;
     }
