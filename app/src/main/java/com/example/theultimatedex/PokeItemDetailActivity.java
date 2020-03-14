@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.example.theultimatedex.utils.PokeUtils;
 
+import org.w3c.dom.Text;
+
 public class PokeItemDetailActivity extends AppCompatActivity {
     private static final String TAG = PokeItemDetailActivity.class.getSimpleName();
 
@@ -25,6 +27,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
     private TextView repoIDTV;
     private ImageView mPokemonSpriteIV;
+    private TextView mPokemonNameTV;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
         repoIDTV = findViewById(R.id.poke_detail_num);
         mPokemonSpriteIV = findViewById(R.id.poke_detail_picture);
+        mPokemonNameTV = findViewById(R.id.poke_detail_name);
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_POKEMON_REPO)) {
@@ -51,6 +55,9 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
     private void fillInLayout(PokemonRepo pokemonRepo) {
         repoIDTV.setText(mRepo.id);
+
+        String pokemonName = mRepo.name.substring(0, 1).toUpperCase() + mRepo.name.substring(1).toLowerCase();
+        mPokemonNameTV.setText(pokemonName);
 
         String iconURL = PokeUtils.buildIconURL(pokemonRepo.sprites.front_default);
         Glide.with(this).load(iconURL).into(mPokemonSpriteIV);
