@@ -34,6 +34,15 @@ public class PokeUtils {
         return url;
     }
 
+    /*
+    public static String buildIconURL(String icon) {
+        return String.format(OWM_ICON_URL_FORMAT_STR, icon);
+    }
+     */
+    public static String buildIconURL(String icon) {
+        Log.d("UltimateDex/PokeUtils", "Returning with icon url: " + icon);
+        return String.format(icon);
+    }
 
     public static ArrayList<PokemonRepo> parseSearchResults(String json) {
         Gson gson = new Gson();
