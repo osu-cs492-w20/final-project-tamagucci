@@ -24,7 +24,7 @@ public class PokeSearchViewModel extends ViewModel {
     }
 
     public void loadResults(String query) {
-        Log.d("UltimateDex/PSViewModel", "Passing" + query + " to loadSearchResults in PokeSearchRepository");
+        Log.d("UltimateDex/PSViewModel", "Passing " + query + " to loadSearchResults in PokeSearchRepository");
         mRepository.loadSearchResults(query);
     }
 

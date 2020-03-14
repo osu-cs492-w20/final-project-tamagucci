@@ -30,6 +30,7 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
 
     @Override
     public void onSearchFinished(List<PokemonRepo> searchResults) {
+        Log.d("UltimateDex/PSRepositor", "onSearchFinished - ");
         mResults.setValue(searchResults);
     }
 
@@ -41,10 +42,14 @@ public class PokeSearchRepository implements PokeSearchAsyncTask.Callback {
         Log.d("UltimateDex/PSRepositor", "Loading " + query + " into PokeSearchAsyncTask.");
         if (shouldExecuteSearch(query)) {
             mCurrentQuery = query;
+
             String url = PokeUtils.buildPokeURL(query);
+
             mResults.setValue(null);
             Log.d("UltimateDex/PSRepositor", "Executing search with url: " + url);
+
             new PokeSearchAsyncTask(this).execute(url);
+            Log.d("UltimateDex/PSRepositor", "***Executed.***");
         }
         else {
             Log.d("UltimateDex/Repository", "Using Cached Search Results");

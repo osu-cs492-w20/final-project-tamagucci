@@ -32,6 +32,7 @@ public class PokeSearchAsyncTask extends AsyncTask<String, Void, String> {
         try {
             Log.d("UltimateDex/PSAsyncTask", "Doing in Background: doHttpGet of url " + url);
             searchResults = NetworkUtils.doHttpGet(url);
+            Log.d("UltimateDex/PSAsyncTask", "searchResults Length " + searchResults.length());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,6 +50,7 @@ public class PokeSearchAsyncTask extends AsyncTask<String, Void, String> {
             searchResults = PokeUtils.parseSearchResults(s);
             Log.d("UltimateDex/PSAsyncTask", "Parsing Results" + s);
         }
+        //Log.d("UltimateDex/PSAsyncTask", "onPostExecute - searchResults.size()  = " + searchResults.get(0).id);
         mCallback.onSearchFinished(searchResults);
     }
 }

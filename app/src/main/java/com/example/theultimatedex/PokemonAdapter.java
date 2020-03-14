@@ -2,6 +2,7 @@ package com.example.theultimatedex;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,13 +73,15 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonI
         }
 
 
-        public void bind(PokemonRepo pokemonRepo) {
+            public void bind(PokemonRepo pokemonRepo) {
 
-            Context context = mPokemonNumberTV.getContext();
+                Context context = mPokemonNumberTV.getContext();
 
-            // *** SHARED PREFS NEED TO GO IN HERE ***
-            String pokemonNumber = pokemonRepo.id;
-            mPokemonNumberTV.setText(pokemonNumber);
+                // *** SHARED PREFS NEED TO GO IN HERE ***
+                Log.d("UltimateDex/PokemonAdap","Pokemon Number = " + pokemonRepo.id);
+
+                String pokemonNumber = pokemonRepo.id;
+                mPokemonNumberTV.setText(pokemonNumber);
 
             /*
             for reference for getting sprite later
