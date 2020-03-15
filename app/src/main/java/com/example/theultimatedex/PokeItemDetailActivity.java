@@ -36,9 +36,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate!");
-        mPokeItemString = getIntent().getStringExtra(POKE_DT);
         setContentView(R.layout.poke_detail);
-
 
         repoIDTV = findViewById(R.id.poke_detail_num);
         mPokemonSpriteIV = findViewById(R.id.poke_detail_picture);
@@ -49,9 +47,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_POKEMON_REPO)) {
+            Log.d(TAG,"Prushka: Intent not null and has Extra!");
             mRepo = (PokemonRepo)intent.getSerializableExtra(EXTRA_POKEMON_REPO);
-
-
 
             fillInLayout(mRepo);
         }
@@ -75,7 +72,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
             mPokemonType2.setText(pokemonType2);
             mPokemonType2.setVisibility(View.VISIBLE);
         }
- */
+        */
         //String pokemonType1 = mRepo.types[0].type[1].name.substring(0, 1).toUpperCase() + mRepo.types[0].type[1].name.substring(1).toLowerCase();
         //mPokemonType1.setText(pokemonType1);
 

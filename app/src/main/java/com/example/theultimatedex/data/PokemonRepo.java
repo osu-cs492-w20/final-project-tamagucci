@@ -29,81 +29,81 @@ public class PokemonRepo implements Serializable {
 
 
     // Classes needed for the json returns.
-    public class abilities {
+    public class abilities implements Serializable {
         public ability ability;
         public String ishidden;
         public String slot;
-        public class ability {
+        public class ability implements Serializable {
             public String name;
             public String url;
         }
     }
-    public class form {
+    public class form implements Serializable {
         public String name;
         public String url;
     }
-    public class gameIndex{
+    public class gameIndex implements Serializable {
         public String game_index;
         public Version version;
-        public class Version {
+        public class Version implements Serializable {
             public String name;
             public String url;
         }
     }
-    public class heldItem {
+    public class heldItem implements Serializable {
         public Item item;
         public ArrayList<VersionDetail> version_details;
-        public class Item {
+        public class Item implements Serializable {
             public String name;
             public String url;
         }
-        public class VersionDetail {
+        public class VersionDetail implements Serializable {
             public String rarity;
             public Version version;
-            public class Version {
+            public class Version implements Serializable {
                 public String name;
                 public String url;
             }
         }
     }
-    public class Moves {
+    public class Moves implements Serializable {
         public Move move;
         public ArrayList<VersionGroupDetail> version_group_details;
-        public class Move {
+        public class Move implements Serializable {
             public String name;
             public String url;
         }
-        public class VersionGroupDetail {
+        public class VersionGroupDetail implements Serializable {
             public String level_learned_at;
             public MoveLearnMethod move_learn_method;
             public VersionGroup version_group;
-            public class MoveLearnMethod {
+            public class MoveLearnMethod implements Serializable {
                 public String name;
                 public String url;
             }
-            public class VersionGroup {
+            public class VersionGroup implements Serializable {
                 public String name;
                 public String url;
             }
         }
     }
-    public class Species {
+    public class Species implements Serializable {
         public String name;
         public String url;
     }
-    public class Stats {
+    public class Stats implements Serializable {
         public String base_stat;
         public String effort;
         public Stat stat;
-        public class Stat {
+        public class Stat implements Serializable {
             public String name;
             public String url;
         }
     }
-    public class Pktypes {
+    public class Pktypes implements Serializable {
         public String slot;
         public Pktype type;
-        public class Pktype {
+        public class Pktype implements Serializable {
             public String name;
             public String url;
         }

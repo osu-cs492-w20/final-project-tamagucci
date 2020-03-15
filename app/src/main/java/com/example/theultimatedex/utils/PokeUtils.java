@@ -54,7 +54,7 @@ public class PokeUtils {
         //ArrayList<PokemonRepo> results = gson.fromJson(json, PokeSearchResults.class).items;
 
         PokemonRepo Pokemon = gson.fromJson(json, PokemonRepo.class);
-        ArrayList<PokemonRepo> results = new ArrayList<PokemonRepo>();
+        ArrayList<PokemonRepo> results = new ArrayList<>();
         results.add(Pokemon);
 
         Log.d(TAG,"parseSearchResults item 0 id");

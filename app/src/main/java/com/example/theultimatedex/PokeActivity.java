@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.theultimatedex.data.GenerationRepo;
-import com.example.theultimatedex.data.PokeSearchAsyncTask;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.example.theultimatedex.data.TypeRepo;
 import com.example.theultimatedex.utils.NetworkUtils;
@@ -30,6 +29,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     private static final String GEN_AC = "GEN_AC";
     private static final String TYP_AC = "TYP_AC";
 
+    private ArrayList<AsyncTask<String,Void,String>> asyncTasks;
+
 
     private ArrayList<PokemonRepo> mPokemonToShow;
     private String mActivityType;
@@ -45,6 +46,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate");
+        asyncTasks = new ArrayList<AsyncTask<String,Void,String>>();
         setContentView(R.layout.poke_recycle_layout);
         // Begin creating new recycle-view to display the data.
         mPokeAdapter = new PokeAdapter(this);
@@ -81,7 +83,23 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        int size = asyncTasks.size();
+        for(int i = 0; i < size; i++) {
+            asyncTasks.get(i).cancel(true);
+            if(asyncTasks.get(i).isCancelled()) {
+                Log.d(TAG,"Prushka: FA9 Successfully canceled async task!");
+            }
+            else {
+                Log.d(TAG,"Prushka: FA9 Problem canceling async task!");
+            }
+        }
+        asyncTasks.clear();
+        Log.d(TAG,"Canceled " + size + " tasks!");
+        Log.d(TAG,"Thank you for your cooperation and have a nice day!");
+    }
 
     public void unloadGenerationResults(List<GenerationRepo> generationItems) {
         GenerationRepo mGenRepo = generationItems.get(0);
@@ -90,6 +108,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             String url = PokeUtils.buildPokeURL("pokemon/" + poke.name);
             loadPoke(url);
         }
+        new loadingIndicator().execute();
     }
 
     public void unloadTypeResults(List<TypeRepo> typeItems) {
@@ -99,6 +118,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             String url = PokeUtils.buildPokeURL("pokemon/" + poke.name);
             loadPoke(url);
         }
+        new loadingIndicator().execute();
     }
 
 
@@ -107,7 +127,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     @Override
     public void onPokeItemClick(PokemonRepo pokeRepo) {
         Intent intent = new Intent(this,PokeItemDetailActivity.class);
-        intent.putExtra("POKE_DT","HI!");
+        intent.putExtra(PokeItemDetailActivity.EXTRA_POKEMON_REPO,pokeRepo);
         startActivity(intent);
     }
 
@@ -215,6 +235,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d(TAG,"Prushka: onPreExecute!");
+            asyncTasks.add(this);
             //mPokeError.setVisibility(View.INVISIBLE);
             //mPokeProgress.setVisibility(View.VISIBLE);
         }
@@ -248,7 +269,39 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 //mPokeProgress.setVisibility(View.INVISIBLE);
                 Log.d(TAG,"Prushka: Failure!");
             }
+            asyncTasks.remove(this);
         }
     }
 
+
+    public class loadingIndicator extends AsyncTask<Void, Void, String> {
+        boolean isFinished;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG,"Prushka: FA9 Loading started!");
+            Log.d(TAG,"Prushka: FA9 Tasks remaining: " + asyncTasks.size());
+            mPokeRV.setVisibility(View.INVISIBLE);
+            //mPokeProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            Log.d(TAG,"Prushka: FA9 Loading!");
+            while(asyncTasks.size() > 0) {
+                // Wait
+                isFinished = false;
+            }
+            isFinished = true;
+            return "DONE";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.d(TAG,"Prushka: FA9 Loading complete!");
+            mPokeRV.setVisibility(View.VISIBLE);
+            //mPokeProgress.setVisibility(View.INVISIBLE);
+        }
+    }
 }
