@@ -11,7 +11,9 @@ public class PokemonRepo implements Serializable {
 
     public String id;
     public String name;
-    
+    public sprites sprites;
+    //public PokemonTypeRepo[] types;
+  
     //@SerializedName("pokemon_species")
     //public String species;
 

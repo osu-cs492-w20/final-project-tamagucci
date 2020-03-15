@@ -43,11 +43,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/poke_detail_type"
+                        android:id="@+id/poke_detail_type1"
                         android:textSize="18sp"
                         android:padding="8dp"
                         android:text="type: water">
 
+
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/poke_detail_type2"
+                        android:textSize="18sp"
+                        android:padding="8dp"
+                        android:visibility="invisible"
+                        android:text="type: water">
                     </TextView>
                 </LinearLayout>
                 <androidx.appcompat.widget.AppCompatImageView

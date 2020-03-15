@@ -54,14 +54,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ProgressBar
-                android:id="@+id/pb_loading_indicator"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_margin="32dp"
-                android:layout_gravity="top|center_horizontal"
-                android:background="@color/colorBonus"
-                android:visibility="invisible"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pokemon_items"
@@ -80,6 +73,14 @@
                 android:visibility="invisible"
                 android:text="@string/loading_error_message" />
 
+            <ProgressBar
+                android:id="@+id/pb_loading_indicator"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_margin="32dp"
+                android:layout_gravity="top|center_horizontal"
+                android:background="@color/colorBonus"
+                android:visibility="invisible"/>
 
 
         </FrameLayout>
