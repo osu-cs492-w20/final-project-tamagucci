@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 
 import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
@@ -77,7 +78,8 @@ public class PokeAdapter extends RecyclerView.Adapter<PokeAdapter.PokeHolder> {
             // *** SHARED PREFS NEED TO GO IN HERE ***
             mPokemonNameTV.setText(pokemonRepo.name);
             mPokemonNumberTV.setText(pokemonRepo.id);
-
+            String iconURL = PokeUtils.buildIconURL(pokemonRepo.sprites.front_default);
+            Glide.with(mPokemonSpriteIV.getContext()).load(iconURL).into(mPokemonSpriteIV);
             /*
             for reference for getting sprite later
             String iconURL = OpenWeatherMapUtils.buildIconURL(forecastItem.icon);

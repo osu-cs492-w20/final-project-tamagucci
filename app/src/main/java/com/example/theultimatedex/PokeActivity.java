@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokeSearchAsyncTask;
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.TypeRepo;
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
 
@@ -73,7 +74,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 Log.d(TAG, "TYP_AC");
                 // Type API call here.
                 url = PokeUtils.buildPokeURL("type/" + mTypNum);
-                //loadPoke(url);
+                loadTyp(url);
                 break;
             default:
                 break;
@@ -91,6 +92,15 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         }
     }
 
+    public void unloadTypeResults(List<TypeRepo> typeItems) {
+        TypeRepo mTypRepo = typeItems.get(0);
+        for(int i = 0; i < mTypRepo.pokemon.size(); i++) {
+            TypeRepo.Pokem.PokeMon poke = mTypRepo.pokemon.get(i).pokemon;
+            String url = PokeUtils.buildPokeURL("pokemon/" + poke.name);
+            loadPoke(url);
+        }
+    }
+
 
 
 
@@ -103,6 +113,10 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
     public void loadGen(String url) {
         new GenLoad().execute(url);
+    }
+
+    public void loadTyp(String url) {
+        new TypLoad().execute(url);
     }
 
     public void loadPoke(String url) {
@@ -142,6 +156,48 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             if (s != null) {
                 ArrayList<GenerationRepo> results = PokeUtils.parseGenerationResults(s);
                 unloadGenerationResults(results);
+                Log.d(TAG,"Prushka: Success!");
+            } else {
+                //mPokeError.setVisibility(View.VISIBLE);
+                //mPokeProgress.setVisibility(View.INVISIBLE);
+                Log.d(TAG,"Prushka: Failure!");
+            }
+        }
+    }
+
+
+    public class TypLoad extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(TAG,"Prushka: onPreExecute!");
+            //mPokeError.setVisibility(View.INVISIBLE);
+            //mPokeProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            Log.d(TAG,"Prushka: Execute!");
+            String url = strings[0];
+            String pokeRes = null;
+            try {
+                pokeRes = NetworkUtils.doHttpGet(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG,"Prushka: results: " + pokeRes);
+            return pokeRes;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.d(TAG,"Prushka: onPostExecute!");
+
+            if (s != null) {
+                ArrayList<TypeRepo> results = PokeUtils.parseTypeResults(s);
+                unloadTypeResults(results);
                 Log.d(TAG,"Prushka: Success!");
             } else {
                 //mPokeError.setVisibility(View.VISIBLE);

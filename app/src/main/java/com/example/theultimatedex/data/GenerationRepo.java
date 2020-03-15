@@ -3,7 +3,7 @@ package com.example.theultimatedex.data;
 import java.util.ArrayList;
 
 public class GenerationRepo {
-    public ArrayList<String> abilities;
+    public ArrayList<ability> abilities;
     public String id;
     public main_region main_region;
     public ArrayList<moves> moves;
@@ -12,6 +12,11 @@ public class GenerationRepo {
     public ArrayList<pokemon_species> pokemon_species;
     public ArrayList<types> types;
     public ArrayList<version_groups> version_groups;
+
+    public class ability {
+        public String name;
+        public String url;
+    }
 
     public class main_region {
         public String name;

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.TypeRepo;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Array;
@@ -77,6 +78,27 @@ public class PokeUtils {
         GenerationRepo generation = gson.fromJson(json, GenerationRepo.class);
         ArrayList<GenerationRepo> results = new ArrayList<>();
         results.add(generation);
+
+        Log.d(TAG,"parseGenerationResults item 0 id");
+        if (results != null){
+            Log.d(TAG,"results NOT NULL");
+            return results;
+        }
+        else {
+            Log.d(TAG,"results IS NULL");
+            return null;
+        }
+    }
+
+
+    public static ArrayList<TypeRepo> parseTypeResults(String json) {
+        Gson gson = new Gson();
+        Log.d(TAG,"json length: " + json.length());
+        Log.d(TAG,"json = \n" + json);
+
+        TypeRepo typeR = gson.fromJson(json, TypeRepo.class);
+        ArrayList<TypeRepo> results = new ArrayList<>();
+        results.add(typeR);
 
         Log.d(TAG,"parseGenerationResults item 0 id");
         if (results != null){
