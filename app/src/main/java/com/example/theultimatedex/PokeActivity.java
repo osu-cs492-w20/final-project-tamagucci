@@ -53,8 +53,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         mPokeRV = findViewById(R.id.poke_RV);
         mPokeRV.setAdapter(mPokeAdapter);
         mPokeRV.setLayoutManager(new LinearLayoutManager(this));
-        //mPokeProgress = findViewById(R.id.);
-        //mPokeError = findViewById();
+        mPokeProgress = findViewById(R.id.Poke_pb_loading_indicator);
+        mPokeError = findViewById(R.id.Poke_tv_loading_error_message);
         mPokemonToShow = new ArrayList<>();
 
         mTypNum = "0";
@@ -150,8 +150,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d(TAG,"Prushka: onPreExecute!");
-            //mPokeError.setVisibility(View.INVISIBLE);
-            //mPokeProgress.setVisibility(View.VISIBLE);
+            mPokeError.setVisibility(View.INVISIBLE);
+            mPokeProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -178,8 +178,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 unloadGenerationResults(results);
                 Log.d(TAG,"Prushka: Success!");
             } else {
-                //mPokeError.setVisibility(View.VISIBLE);
-                //mPokeProgress.setVisibility(View.INVISIBLE);
+                mPokeError.setVisibility(View.VISIBLE);
+                mPokeProgress.setVisibility(View.INVISIBLE);
                 Log.d(TAG,"Prushka: Failure!");
             }
         }
@@ -192,8 +192,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d(TAG,"Prushka: onPreExecute!");
-            //mPokeError.setVisibility(View.INVISIBLE);
-            //mPokeProgress.setVisibility(View.VISIBLE);
+            mPokeError.setVisibility(View.INVISIBLE);
+            mPokeProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -220,8 +220,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 unloadTypeResults(results);
                 Log.d(TAG,"Prushka: Success!");
             } else {
-                //mPokeError.setVisibility(View.VISIBLE);
-                //mPokeProgress.setVisibility(View.INVISIBLE);
+                mPokeError.setVisibility(View.VISIBLE);
+                mPokeProgress.setVisibility(View.INVISIBLE);
                 Log.d(TAG,"Prushka: Failure!");
             }
         }
@@ -236,8 +236,6 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             super.onPreExecute();
             Log.d(TAG,"Prushka: onPreExecute!");
             asyncTasks.add(this);
-            //mPokeError.setVisibility(View.INVISIBLE);
-            //mPokeProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -261,12 +259,19 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
             if (s != null) {
                 ArrayList<PokemonRepo> results = PokeUtils.parseSearchResults(s);
-                mPokemonToShow.add(results.get(0));
-                mPokeAdapter.updateSearchResults(mPokemonToShow);
-                Log.d(TAG,"Prushka: Success!");
+                if(results != null) {
+                    mPokemonToShow.add(results.get(0));
+                    mPokeAdapter.updateSearchResults(mPokemonToShow);
+                    Log.d(TAG,"Prushka: Success!");
+                }
+                else {
+                    mPokeError.setVisibility(View.VISIBLE);
+                    mPokeProgress.setVisibility(View.INVISIBLE);
+                    Log.d(TAG,"Prushka: Failure!");
+                }
             } else {
-                //mPokeError.setVisibility(View.VISIBLE);
-                //mPokeProgress.setVisibility(View.INVISIBLE);
+                mPokeError.setVisibility(View.VISIBLE);
+                mPokeProgress.setVisibility(View.INVISIBLE);
                 Log.d(TAG,"Prushka: Failure!");
             }
             asyncTasks.remove(this);
@@ -282,7 +287,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             Log.d(TAG,"Prushka: FA9 Loading started!");
             Log.d(TAG,"Prushka: FA9 Tasks remaining: " + asyncTasks.size());
             mPokeRV.setVisibility(View.INVISIBLE);
-            //mPokeProgress.setVisibility(View.VISIBLE);
+            mPokeProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -301,7 +306,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             super.onPostExecute(s);
             Log.d(TAG,"Prushka: FA9 Loading complete!");
             mPokeRV.setVisibility(View.VISIBLE);
-            //mPokeProgress.setVisibility(View.INVISIBLE);
+            mPokeProgress.setVisibility(View.INVISIBLE);
         }
     }
 }

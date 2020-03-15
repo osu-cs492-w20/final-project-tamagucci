@@ -44,7 +44,7 @@
         <!-- Pokemon View Activity -->
         <activity
             android:name=".PokeItemDetailActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".PokeActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
