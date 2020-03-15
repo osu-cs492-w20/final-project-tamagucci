@@ -3,6 +3,7 @@ package com.example.theultimatedex.utils;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.google.gson.Gson;
 
@@ -10,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PokeUtils {
-
+    private static final String TAG = PokeUtils.class.getSimpleName();
     private final static String POKE_API_BASE_URL = "http://pokeapi.co/api/v2/";
     private final static String POKE_POKE_PARAM = "pokemon/";
 
@@ -24,7 +25,7 @@ public class PokeUtils {
 
         // need to validate that whatever is passed gets sent to lowercase
         String query = q.toLowerCase();
-        Log.d("UltimateDex/PokeUtils", "q = " + q + " | query = " + query);
+        Log.d(TAG, "q = " + q + " | query = " + query);
         String url = Uri.parse(POKE_API_BASE_URL).buildUpon()
                 .appendPath(query)
                 .build()
@@ -37,22 +38,44 @@ public class PokeUtils {
 
     public static ArrayList<PokemonRepo> parseSearchResults(String json) {
         Gson gson = new Gson();
-        Log.d("UltimateDex/Pokeutils","json length: " + json.length());
+        Log.d(TAG,"json length: " + json.length());
         //PokeSearchResults results = gson.fromJson(json, PokeSearchResults.class);
-        Log.d("UltimateDex/Pokeut/json","json = \n" + json);
+        Log.d(TAG,"json = \n" + json);
         //ArrayList<PokemonRepo> results = gson.fromJson(json, PokeSearchResults.class).items;
 
         PokemonRepo Pokemon = gson.fromJson(json, PokemonRepo.class);
         ArrayList<PokemonRepo> results = new ArrayList<PokemonRepo>();
         results.add(Pokemon);
 
-        Log.d("UltimateDex/Pokeutils","parseSearchResults item 0 id");
+        Log.d(TAG,"parseSearchResults item 0 id");
         if (results != null){ // && results.items != null) {
-            Log.d("UltimateDex/Pokeutils","results NOT NULL");
+            Log.d(TAG,"results NOT NULL");
             return results;
         }
         else {
-            Log.d("UltimateDex/Pokeutils","results IS NULL");
+            Log.d(TAG,"results IS NULL");
+            return null;
+        }
+    }
+
+
+
+    public static ArrayList<GenerationRepo> parseGenerationResults(String json) {
+        Gson gson = new Gson();
+        Log.d(TAG,"json length: " + json.length());
+        Log.d(TAG,"json = \n" + json);
+
+        GenerationRepo generation = gson.fromJson(json, GenerationRepo.class);
+        ArrayList<GenerationRepo> results = new ArrayList<>();
+        results.add(generation);
+
+        Log.d(TAG,"parseGenerationResults item 0 id");
+        if (results != null){
+            Log.d(TAG,"results NOT NULL");
+            return results;
+        }
+        else {
+            Log.d(TAG,"results IS NULL");
             return null;
         }
     }
