@@ -50,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        mFavePokemon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFavoritePokemon();
+            }
+        });
+
     }
 
 
@@ -69,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
     public void openTypeSelect() {
         Log.d("UltimateDex/MainActivit", "Opening Type Activity");
         Intent intent = new Intent(this, TypeActivity.class);
+        startActivity(intent);
+    }
+
+
+
+    public void openFavoritePokemon() {
+        Log.d("UltimateDex/MainActivit", "Opening Fave Pokemon Activity");
+        Intent intent = new Intent(this, SavedPokemonActivity.class);
         startActivity(intent);
     }
 

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.theultimatedex.data.PokemonRepo;
@@ -28,6 +30,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
     private PokemonRepo mRepo;
     private boolean mIsSaved = false;
 
+    private SavedReposViewModel mViewModel;
+
     private String mPokeItemString;
 
     private TextView repoIDTV;
@@ -42,6 +46,11 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate!");
         setContentView(R.layout.poke_detail);
+
+        mViewModel = new ViewModelProvider(
+                this,
+                new ViewModelProvider.AndroidViewModelFactory(getApplication())
+        ).get(SavedReposViewModel.class);
 
         repoIDTV = findViewById(R.id.poke_detail_num);
         mPokemonSpriteIV = findViewById(R.id.poke_detail_picture);
@@ -61,7 +70,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         addPokemonIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
+
                 if (mRepo != null) {
                     if (!mIsSaved) {
                         mViewModel.insertSavedRepo(mRepo);
@@ -69,12 +78,19 @@ public class PokeItemDetailActivity extends AppCompatActivity {
                         mViewModel.deleteSavedRepo(mRepo);
                     }
                 }
-*/
 
-                if(!mIsSaved) {
+            }
+        });
+
+        mViewModel.getRepoByID(mRepo.id).observe(this, new Observer<PokemonRepo>() {
+            @Override
+            public void onChanged(PokemonRepo repo) {
+                if (repo != null) {
+                    Log.d("SPECIAL TEST", "Adding Pokemon.");
                     mIsSaved = true;
                     addPokemonIV.setImageResource(R.drawable.ic_action_remove);
                 } else {
+                    Log.d("SPECIAL TEST", "Removal Pokemon.");
                     mIsSaved = false;
                     addPokemonIV.setImageResource(R.drawable.ic_action_add);
                 }
