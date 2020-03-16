@@ -44,11 +44,11 @@
         <!-- Pokemon View Activity -->
         <activity
             android:name=".PokeItemDetailActivity"
-            android:parentActivityName=".PokeActivity"
+            android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PokeActivity" />
+                android:value=".MainActivity" />
         </activity>
 
         <!-- Search Activity -->
