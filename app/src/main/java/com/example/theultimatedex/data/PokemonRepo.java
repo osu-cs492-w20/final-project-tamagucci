@@ -8,12 +8,109 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PokemonRepo implements Serializable {
-
+    public ArrayList<abilities> abilities;
+    public String base_experience;
+    public ArrayList<form> forms;
+    public ArrayList<gameIndex> game_indices;
+    public String height;
+    public ArrayList<heldItem> held_items;
     public String id;
+    public String is_default;
+    public String location_area_encounters;
+    public ArrayList<Moves> moves;
     public String name;
+    public String order;
+    public Species species;
     public sprites sprites;
-    //public PokemonTypeRepo[] types;
-  
+    public ArrayList<Stats> stats;
+    public ArrayList<Pktypes> types;
+    public String weight;
+
+
+
+    // Classes needed for the json returns.
+    public class abilities implements Serializable {
+        public ability ability;
+        public String ishidden;
+        public String slot;
+        public class ability implements Serializable {
+            public String name;
+            public String url;
+        }
+    }
+    public class form implements Serializable {
+        public String name;
+        public String url;
+    }
+    public class gameIndex implements Serializable {
+        public String game_index;
+        public Version version;
+        public class Version implements Serializable {
+            public String name;
+            public String url;
+        }
+    }
+    public class heldItem implements Serializable {
+        public Item item;
+        public ArrayList<VersionDetail> version_details;
+        public class Item implements Serializable {
+            public String name;
+            public String url;
+        }
+        public class VersionDetail implements Serializable {
+            public String rarity;
+            public Version version;
+            public class Version implements Serializable {
+                public String name;
+                public String url;
+            }
+        }
+    }
+    public class Moves implements Serializable {
+        public Move move;
+        public ArrayList<VersionGroupDetail> version_group_details;
+        public class Move implements Serializable {
+            public String name;
+            public String url;
+        }
+        public class VersionGroupDetail implements Serializable {
+            public String level_learned_at;
+            public MoveLearnMethod move_learn_method;
+            public VersionGroup version_group;
+            public class MoveLearnMethod implements Serializable {
+                public String name;
+                public String url;
+            }
+            public class VersionGroup implements Serializable {
+                public String name;
+                public String url;
+            }
+        }
+    }
+    public class Species implements Serializable {
+        public String name;
+        public String url;
+    }
+    public class Stats implements Serializable {
+        public String base_stat;
+        public String effort;
+        public Stat stat;
+        public class Stat implements Serializable {
+            public String name;
+            public String url;
+        }
+    }
+    public class Pktypes implements Serializable {
+        public String slot;
+        public Pktype type;
+        public class Pktype implements Serializable {
+            public String name;
+            public String url;
+        }
+    }
+    // Other stuff that kira might need.
+
+
     //@SerializedName("pokemon_species")
     //public String species;
 

@@ -1,8 +1,9 @@
 package com.example.theultimatedex.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GenerationRepo {
+public class GenerationRepo implements Serializable {
     public ArrayList<ability> abilities;
     public String id;
     public main_region main_region;
@@ -13,37 +14,37 @@ public class GenerationRepo {
     public ArrayList<types> types;
     public ArrayList<version_groups> version_groups;
 
-    public class ability {
+    public class ability implements Serializable {
         public String name;
         public String url;
     }
 
-    public class main_region {
+    public class main_region implements Serializable {
         public String name;
         public String url;
     }
-    public class names {
+    public class names implements Serializable {
         public language language;
         public String name;
 
-        public class language {
+        public class language implements Serializable {
             public String name;
             public String url;
         }
     }
-    public class moves {
+    public class moves implements Serializable {
         public String name;
         public String url;
     }
-    public class pokemon_species {
+    public class pokemon_species implements Serializable {
         public String name;
         public String url;
     }
-    public class types {
+    public class types implements Serializable {
         public String name;
         public String url;
     }
-    public class version_groups {
+    public class version_groups implements Serializable {
         public String name;
         public String url;
     }

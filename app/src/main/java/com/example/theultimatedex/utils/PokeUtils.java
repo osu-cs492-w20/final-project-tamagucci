@@ -52,9 +52,12 @@ public class PokeUtils {
         //PokeSearchResults results = gson.fromJson(json, PokeSearchResults.class);
         Log.d(TAG,"json = \n" + json);
         //ArrayList<PokemonRepo> results = gson.fromJson(json, PokeSearchResults.class).items;
-
+        if(json.equals("Not Found")) {
+            Log.d(TAG,"results IS NULL");
+            return null;
+        }
         PokemonRepo Pokemon = gson.fromJson(json, PokemonRepo.class);
-        ArrayList<PokemonRepo> results = new ArrayList<PokemonRepo>();
+        ArrayList<PokemonRepo> results = new ArrayList<>();
         results.add(Pokemon);
 
         Log.d(TAG,"parseSearchResults item 0 id");
