@@ -2,6 +2,7 @@ package com.example.theultimatedex;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -22,6 +23,7 @@ public class SavedPokemonActivity extends AppCompatActivity implements PokemonAd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("UltimateDex/SavedPoke", "Opened Fave Pokemon Activity");
         setContentView(R.layout.activity_saved_pokemon);
 
         RecyclerView savedReposRV = findViewById(R.id.rv_saved_repos);
