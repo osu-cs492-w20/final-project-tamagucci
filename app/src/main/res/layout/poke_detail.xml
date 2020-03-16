@@ -31,15 +31,27 @@
                         android:text="Dragonair">
 
                     </TextView>
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/poke_detail_num"
-                        android:textSize="22sp"
-                        android:padding="8dp"
-                        android:text="no. 000">
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/poke_detail_num"
+                            android:textSize="22sp"
+                            android:padding="8dp"
+                            android:text="no. 000"/>
 
-                    </TextView>
+
+                        <ImageView
+                            android:id="@+id/iv_repo_add_pokemon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_action_add"/>
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"

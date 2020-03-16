@@ -26,6 +26,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POKEMON_REPO = "PokemonRepo";
     private PokemonRepo mRepo;
+    private boolean mIsSaved = false;
 
     private String mPokeItemString;
 
@@ -55,6 +56,31 @@ public class PokeItemDetailActivity extends AppCompatActivity {
             mRepo = (PokemonRepo)intent.getSerializableExtra(EXTRA_POKEMON_REPO);
             fillInLayout(mRepo);
         }
+
+        final ImageView addPokemonIV = findViewById(R.id.iv_repo_add_pokemon);
+        addPokemonIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                if (mRepo != null) {
+                    if (!mIsSaved) {
+                        mViewModel.insertSavedRepo(mRepo);
+                    } else {
+                        mViewModel.deleteSavedRepo(mRepo);
+                    }
+                }
+*/
+
+                if(!mIsSaved) {
+                    mIsSaved = true;
+                    addPokemonIV.setImageResource(R.drawable.ic_action_remove);
+                } else {
+                    mIsSaved = false;
+                    addPokemonIV.setImageResource(R.drawable.ic_action_add);
+                }
+            }
+        });
+
 
     }
     @Override
