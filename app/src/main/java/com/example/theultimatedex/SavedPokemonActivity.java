@@ -1,5 +1,6 @@
 package com.example.theultimatedex;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class SavedPokemonActivity extends AppCompatActivity implements PokemonAd
 
 
     private SavedReposViewModel mViewModel;
+    private PokemonAdapter mPokemonAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,8 @@ public class SavedPokemonActivity extends AppCompatActivity implements PokemonAd
         savedReposRV.setLayoutManager(new LinearLayoutManager(this));
         savedReposRV.setHasFixedSize(true);
 
-        final PokemonAdapter adapter = new PokemonAdapter(this);
-        savedReposRV.setAdapter(adapter);
+        mPokemonAdapter = new PokemonAdapter(this);
+        savedReposRV.setAdapter(mPokemonAdapter);
 
         mViewModel = new ViewModelProvider(
                 this,
@@ -37,16 +39,17 @@ public class SavedPokemonActivity extends AppCompatActivity implements PokemonAd
         mViewModel.getAllRepos().observe(this, new Observer<List<PokemonRepo>>() {
             @Override
             public void onChanged(List<PokemonRepo> PokemonRepos) {
-                adapter.updateSearchResults(PokemonRepos);
+                mPokemonAdapter.updateSearchResults(PokemonRepos);
             }
         });
     }
 
 
 
-
     @Override
     public void onPokemonItemClick(PokemonRepo pokemonRepo) {
-
+        Intent intent = new Intent(this, PokeItemDetailActivity.class);
+        intent.putExtra(PokeItemDetailActivity.EXTRA_POKEMON_REPO, pokemonRepo);
+        startActivity(intent);
     }
 }

@@ -49,7 +49,8 @@
                             android:id="@+id/iv_repo_add_pokemon"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:src="@drawable/ic_action_add"/>
+                            android:src="@drawable/ic_action_add"
+                            android:paddingLeft="16dp"/>
                     </LinearLayout>
 
 
