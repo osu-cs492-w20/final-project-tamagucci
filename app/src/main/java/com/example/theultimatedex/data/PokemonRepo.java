@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -48,6 +49,7 @@ public class PokemonRepo implements Serializable {
 
 
     // Classes needed for the json returns.
+    //@TypeConverter            < -- doesn't work
     public class abilities implements Serializable {
         public ability ability;
         public String ishidden;
