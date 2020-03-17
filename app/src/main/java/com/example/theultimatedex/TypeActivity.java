@@ -2,8 +2,13 @@ package com.example.theultimatedex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +17,8 @@ public class TypeActivity extends AppCompatActivity {
     private static final String TAG = TypeActivity.class.getSimpleName();
     private static final String POKE_RV = "POKE_RV";
     private static final String TYP_AC = "TYP_AC";
+
+    HomeWatcher mHomeWatcher;
 
     private TextView mTyp1;
     private TextView mTyp2;
@@ -36,6 +43,36 @@ public class TypeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate");
+
+
+        // MUSIC COMMENT BLOCK START HERE /*
+
+        // Bind Music Service Here
+        doBindService();
+        Intent music = new Intent();
+        music.setClass(this, MusicService.class);
+        startService(music);
+
+        // To Watch for if Screen goes black or goes to other screen outside of app;
+        mHomeWatcher = new HomeWatcher(this);
+        mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+            @Override
+            public void onHomePressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+            @Override
+            public void onHomeLongPressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+        });
+        mHomeWatcher.startWatch();
+        // MUSIC COMMENT BLOCK END HERE */
+
+
         setContentView(R.layout.activity_type);
         // Init the views.
         mTyp1 = findViewById(R.id.tv_normal_select);
@@ -178,4 +215,75 @@ public class TypeActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    // MUSIC COMMENT BLOCK START HERE /*
+
+    private boolean mIsBound = false;
+    private MusicService mServ;
+    private ServiceConnection Scon =new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder
+                binder) {
+            mServ = ((MusicService.ServiceBinder)binder).getService();
+        }
+
+        public void onServiceDisconnected(ComponentName name) {
+            mServ = null;
+        }
+    };
+
+    void doBindService(){
+        bindService(new Intent(this,MusicService.class),
+                Scon, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    void doUnbindService()
+    {
+        if(mIsBound)
+        {
+            unbindService(Scon);
+            mIsBound = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mServ != null) {
+            mServ.resumeMusic();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        PowerManager pm = (PowerManager)
+                getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = false;
+        if (pm != null) {
+            isScreenOn = pm.isScreenOn();
+        }
+
+        if (!isScreenOn) {
+            if (mServ != null) {
+                mServ.pauseMusic();
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        doUnbindService();
+        Intent music = new Intent();
+        music.setClass(this,MusicService.class);
+        stopService(music);
+
+    }
+    // MUSIC COMMENT BLOCK END HERE */
 }

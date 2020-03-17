@@ -31,15 +31,28 @@
                         android:text="Dragonair">
 
                     </TextView>
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/poke_detail_num"
-                        android:textSize="22sp"
-                        android:padding="8dp"
-                        android:text="no. 000">
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/poke_detail_num"
+                            android:textSize="22sp"
+                            android:padding="8dp"
+                            android:text="no. 000"/>
 
-                    </TextView>
+
+                        <ImageView
+                            android:id="@+id/iv_repo_add_pokemon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_action_add"
+                            android:paddingLeft="16dp"/>
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -85,15 +98,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
+            android:layout_marginLeft="16dp"
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/poke_detail_stats">
-
+                android:textSize="18dp"
+                android:text="Base Stats">
             </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_speed">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_special_defense">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_special_attack">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_defense">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_attack">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_HP">
+            </TextView>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

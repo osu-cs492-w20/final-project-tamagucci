@@ -2,33 +2,54 @@ package com.example.theultimatedex.data;
 
 import android.icu.lang.UProperty;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Entity(tableName = "repos")
 public class PokemonRepo implements Serializable {
+    @Ignore
     public ArrayList<abilities> abilities;
     public String base_experience;
+    @Ignore
     public ArrayList<form> forms;
+    @Ignore
     public ArrayList<gameIndex> game_indices;
     public String height;
+    @Ignore
     public ArrayList<heldItem> held_items;
+
+    @PrimaryKey
+    @NonNull
     public String id;
+
     public String is_default;
     public String location_area_encounters;
+    @Ignore
     public ArrayList<Moves> moves;
     public String name;
     public String order;
+    @Ignore
     public Species species;
+    @Ignore
     public sprites sprites;
+    @Ignore
     public ArrayList<Stats> stats;
+    @Ignore
     public ArrayList<Pktypes> types;
     public String weight;
 
 
 
     // Classes needed for the json returns.
+    //@TypeConverter            < -- doesn't work
     public class abilities implements Serializable {
         public ability ability;
         public String ishidden;
