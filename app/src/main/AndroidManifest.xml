@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service
+            android:name=".MusicService"
+            android:enabled="true" />
+
 
         <!-- TypeSelect Activity -->
         <activity android:name=".TypeActivity"

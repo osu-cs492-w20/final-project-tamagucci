@@ -1,8 +1,13 @@
 package com.example.theultimatedex;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,6 +33,9 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     private static final String POKE_RV = "POKE_RV";
     private static final String GEN_AC = "GEN_AC";
     private static final String TYP_AC = "TYP_AC";
+    private static final String FAV_AC = "FAV_AC";
+
+    HomeWatcher mHomeWatcher;
 
     private ArrayList<AsyncTask<String,Void,String>> asyncTasks;
 
@@ -36,6 +44,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     private String mActivityType;
     private String mTypNum;
     private String mGenNum;
+    private String mFavNum;
 
     private RecyclerView mPokeRV;
     private ProgressBar mPokeProgress;
@@ -46,6 +55,35 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate");
+
+        // MUSIC COMMENT BLOCK START HERE /*
+
+        // Bind Music Service Here
+        doBindService();
+        Intent music = new Intent();
+        music.setClass(this, MusicService.class);
+        startService(music);
+
+        // To Watch for if Screen goes black or goes to other screen outside of app;
+        mHomeWatcher = new HomeWatcher(this);
+        mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+            @Override
+            public void onHomePressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+            @Override
+            public void onHomeLongPressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+        });
+        mHomeWatcher.startWatch();
+        // MUSIC COMMENT BLOCK END HERE */
+
+
         asyncTasks = new ArrayList<AsyncTask<String,Void,String>>();
         setContentView(R.layout.poke_recycle_layout);
         // Begin creating new recycle-view to display the data.
@@ -59,6 +97,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
         mTypNum = "0";
         mGenNum = "0";
+        mFavNum = "0";
         // Determine what type of activity this is.
         mActivityType = getIntent().getStringExtra(POKE_RV);
         // Fill out appropriate forms for the type of activity.
@@ -78,6 +117,10 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 url = PokeUtils.buildPokeURL("type/" + mTypNum);
                 loadTyp(url);
                 break;
+            //case: "FAV_AC":
+                //Log.d("UltimateDex/PokeActiv","FAV_AC");
+
+
             default:
                 break;
         }
@@ -86,6 +129,16 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        // MUSIC COMMENT BLOCK START HERE /*
+
+        doUnbindService();
+        Intent music = new Intent();
+        music.setClass(this,MusicService.class);
+        stopService(music);
+        // MUSIC COMMENT BLOCK END HERE */
+
+
         int size = asyncTasks.size();
         for(int i = 0; i < size; i++) {
             asyncTasks.get(i).cancel(true);
@@ -279,6 +332,15 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     }
 
 
+    public class FaveLoad extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return null;
+        }
+    }
+
+
     public class loadingIndicator extends AsyncTask<Void, Void, String> {
         boolean isFinished;
         @Override
@@ -309,4 +371,70 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
             mPokeProgress.setVisibility(View.INVISIBLE);
         }
     }
+
+
+    // MUSIC COMMENT BLOCK START HERE /*
+
+    private boolean mIsBound = false;
+    private MusicService mServ;
+    private ServiceConnection Scon =new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder
+                binder) {
+            mServ = ((MusicService.ServiceBinder)binder).getService();
+        }
+
+        public void onServiceDisconnected(ComponentName name) {
+            mServ = null;
+        }
+    };
+
+    void doBindService(){
+        bindService(new Intent(this,MusicService.class),
+                Scon, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    void doUnbindService()
+    {
+        if(mIsBound)
+        {
+            unbindService(Scon);
+            mIsBound = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mServ != null) {
+            mServ.resumeMusic();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        PowerManager pm = (PowerManager)
+                getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = false;
+        if (pm != null) {
+            isScreenOn = pm.isScreenOn();
+        }
+
+        if (!isScreenOn) {
+            if (mServ != null) {
+                mServ.pauseMusic();
+            }
+        }
+
+    }
+
+    // *** CHECK OTHER onDestroy in PokeActivity
+
+    // MUSIC COMMENT BLOCK END HERE */
+
 }

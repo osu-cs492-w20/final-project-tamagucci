@@ -2,6 +2,7 @@ package com.example.theultimatedex.data;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -42,6 +43,7 @@ public class SavedPokemonRepository {
 
         @Override
         protected Void doInBackground(PokemonRepo... PokemonRepos) {
+            Log.d("UltimateDex/SavedPkRepo","Inserting "+ PokemonRepos[0].name +" into Database.");
             mAsyncTaskDAO.insert(PokemonRepos[0]);
             return null;
         }
@@ -55,6 +57,7 @@ public class SavedPokemonRepository {
 
         @Override
         protected Void doInBackground(PokemonRepo... PokemonRepos) {
+            Log.d("UltimateDex/SavedPkRepo","Deleting "+ PokemonRepos[0].name +" from Database.");
             mAsyncTaskDAO.delete(PokemonRepos[0]);
             return null;
         }

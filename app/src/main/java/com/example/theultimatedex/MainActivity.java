@@ -2,13 +2,21 @@ package com.example.theultimatedex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    HomeWatcher mHomeWatcher;
 
     private TextView mSearch;
     private TextView mGenSearch;
@@ -21,6 +29,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // MUSIC COMMENT BLOCK START HERE /*
+
+        // Bind Music Service Here
+        doBindService();
+        Intent music = new Intent();
+        music.setClass(this, MusicService.class);
+        startService(music);
+
+        // To Watch for if Screen goes black or goes to other screen outside of app;
+        mHomeWatcher = new HomeWatcher(this);
+        mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+            @Override
+            public void onHomePressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+            @Override
+            public void onHomeLongPressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+        });
+        mHomeWatcher.startWatch();
+        // MUSIC COMMENT BLOCK END HERE */
+
+
 
         Log.d("UltimateDex/MainActivit", "Starting Activity");
         mSearch = findViewById(R.id.tv_search_select);
@@ -88,5 +126,77 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    // MUSIC COMMENT BLOCK START HERE /*
+
+    private boolean mIsBound = false;
+    private MusicService mServ;
+    private ServiceConnection Scon =new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder
+                binder) {
+            mServ = ((MusicService.ServiceBinder)binder).getService();
+        }
+
+        public void onServiceDisconnected(ComponentName name) {
+            mServ = null;
+        }
+    };
+
+    void doBindService(){
+        bindService(new Intent(this,MusicService.class),
+                Scon, Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    void doUnbindService()
+    {
+        if(mIsBound)
+        {
+            unbindService(Scon);
+            mIsBound = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mServ != null) {
+            mServ.resumeMusic();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        PowerManager pm = (PowerManager)
+                getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = false;
+        if (pm != null) {
+            isScreenOn = pm.isScreenOn();
+        }
+
+        if (!isScreenOn) {
+            if (mServ != null) {
+                mServ.pauseMusic();
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        doUnbindService();
+        Intent music = new Intent();
+        music.setClass(this,MusicService.class);
+        stopService(music);
+
+    }
+    // MUSIC COMMENT BLOCK END HERE */
 
 }

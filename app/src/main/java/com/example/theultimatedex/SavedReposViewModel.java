@@ -1,6 +1,7 @@
 package com.example.theultimatedex;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -22,6 +23,8 @@ public class SavedReposViewModel extends AndroidViewModel {
     }
 
     public void insertSavedRepo(PokemonRepo repo) {
+
+
         mRepository.insertSavedRepo(repo);
     }
 
