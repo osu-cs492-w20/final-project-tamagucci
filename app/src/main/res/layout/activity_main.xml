@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_search_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:fontFamily="monospace"
+        android:textSize="30sp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/tv_gen_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search by Generation"
+        android:fontFamily="monospace"
+        android:textSize="30sp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+    />
+
+    <TextView
+        android:id="@+id/tv_type_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search by Type"
+        android:fontFamily="monospace"
+        android:textSize="30sp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+    />
+
+    <TextView
+        android:id="@+id/tv_all_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Pokemon"
+        android:fontFamily="monospace"
+        android:textSize="30sp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+    />
+
+    <TextView
+        android:id="@+id/tv_fave_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite Pokemon"
+        android:fontFamily="monospace"
+        android:textSize="30sp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+    />
+
+
+
+</LinearLayout>
