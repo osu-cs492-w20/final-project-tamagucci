@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/poke_detail_name"
+                        android:textSize="34sp"
+                        android:text="Dragonair">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/poke_detail_num"
+                            android:textSize="22sp"
+                            android:padding="8dp"
+                            android:text="no. 000"/>
+
+
+                        <ImageView
+                            android:id="@+id/iv_repo_add_pokemon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_action_add"
+                            android:paddingLeft="16dp"/>
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/poke_detail_type1"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:text="type: flying">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/poke_detail_type2"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:visibility="invisible"
+                        android:text="type: water">
+                    </TextView>
+
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/poke_detail_picture">
+                </androidx.appcompat.widget.AppCompatImageView>
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/poke_detail_desc"
+                    android:textSize="14sp"
+                    android:padding="8dp"
+                    android:text="Mudkip is a small, amphibious, quadruped Pokémon. It has a blue body with a light-blue underside. It has a large head with a blue fin on top and a light-blue tail fin. It has black, beady eyes and orange, star-shaped gills on its cheeks. By using the fin on its head, Mudkip is able to detect changes in air and water currents as well as bodies of water. Its fin can also point in a certain direction, as seen in the anime. Mudkip is capable of moving or crushing boulders larger than itself. Its large tail fin propels it through water with powerful acceleration. According to its Pokémon Ranger browser entry, Mudkip is a very docile Pokémon. Mudkip is more commonly found in captivity, though it can be found in swamps and other wetlands. In the wild, it sleeps by burying itself in soil at the water's edge.">
+
+                </TextView>
+            </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Base Stats">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_speed">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_special_defense">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_special_attack">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_defense">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_attack">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/poke_detail_stat_HP">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

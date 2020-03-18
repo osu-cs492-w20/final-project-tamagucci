@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <!-- Ignore this file I made it too early, it is now activity_search -->
+    <!-- Figure out how to delete/remove from repo -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/ic_action_search"
+            android:outlineSpotShadowColor="@color/colorPrimaryDark"/>
+
+        <EditText
+            android:id="@+id/et_search_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+
+
+            android:textColorHint="@color/colorAccent"
+            android:hint="@string/search_box_hint"/>
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_button_text"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

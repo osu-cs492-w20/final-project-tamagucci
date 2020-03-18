@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">The Ultimate Dex</string>
+    <string name="search_box_hint">Pokemon...</string>
+    <string name="search_button_text">GO!</string>
+    <string name="Types"><i><b>Types</b></i></string>
+    <string name="Gens"><i><b>Generations</b></i></string>
+    <string name="loading_error_message">We could not retrieve that search result. Please check your spelling and/or internet connection and try again.</string>
+</resources>
