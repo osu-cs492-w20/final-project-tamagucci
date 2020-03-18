@@ -166,7 +166,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
 
 
-    public void unloadFavoriteResults(int size, List<PokemonRepo> mREPO) {
+    public void unloadFavoriteResults(int size, List<String> mREPO) {
         Log.d(TAG,"Prushka: size = " + size);
         for(int i = 0; i < size; i++) {
             PokemonRepo poke = mREPO.get(i);
@@ -228,7 +228,10 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         protected String doInBackground(String... strings) {
             LiveData<List<PokemonRepo>> mRepo = mSavedPokemon.getAllRepos();
             int size = mSavedPokemon.getRepoCount();
-            unloadFavoriteResults(size,mRepo.getValue());
+            // Just have to put names from mRepo into mPokemonSaved
+
+            ArrayList<String> mPokemonSaved = new ArrayList<>();
+            unloadFavoriteResults(size,mPokemonSaved);
             return "YAY!";
         }
     }
