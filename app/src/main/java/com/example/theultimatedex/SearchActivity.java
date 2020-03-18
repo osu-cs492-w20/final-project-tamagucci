@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
 
 
         // MUSIC COMMENT BLOCK START HERE
-        /*
+        //*
 
         doBindService();
         Intent music = new Intent();
@@ -181,7 +181,7 @@ public class SearchActivity extends AppCompatActivity implements PokemonAdapter.
     }
 
     // MUSIC COMMENT BLOCK START HERE
-    /*
+    //*
 
     private boolean mIsBound = false;
     private MusicService mServ;

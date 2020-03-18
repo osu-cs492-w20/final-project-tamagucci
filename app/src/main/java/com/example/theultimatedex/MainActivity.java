@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // MUSIC COMMENT BLOCK START HERE
-        /*
+        //*
 
         // Bind Music Service Here
         doBindService();
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // MUSIC COMMENT BLOCK START HERE
-    /*
+    //*
 
     private boolean mIsBound = false;
     private MusicService mServ;
