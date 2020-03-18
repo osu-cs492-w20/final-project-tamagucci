@@ -25,16 +25,18 @@ public class PokemonRepo implements Serializable {
     public String height;
     @Ignore
     public ArrayList<heldItem> held_items;
-
-    @PrimaryKey
-    @NonNull
+    @Ignore
     public String id;
-
     public String is_default;
     public String location_area_encounters;
     @Ignore
     public ArrayList<Moves> moves;
+
+    @PrimaryKey
+    @NonNull
     public String name;
+
+    @Ignore
     public String order;
     @Ignore
     public Species species;

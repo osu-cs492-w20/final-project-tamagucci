@@ -13,18 +13,18 @@ import java.util.List;
 public interface SavedPokemonDao {
 
     @Insert
-    void insert(savedPokemonNames repo);
+    void insert(PokemonRepo repo);
 
     @Delete
-    void delete(savedPokemonNames repo);
+    void delete(PokemonRepo repo);
 
-    @Query("SELECT count(*) FROM pokemonNames")
+    @Query("SELECT count(*) FROM repos")
     int getRepoCount();
 
-    @Query("SELECT * FROM pokemonNames")
-    LiveData<List<savedPokemonNames>> getAllRepos();
+    @Query("SELECT * FROM repos")
+    LiveData<List<PokemonRepo>> getAllRepos();
 
-    @Query("SELECT * FROM pokemonNames WHERE name = :pokemonName LIMIT 1")
-    LiveData<savedPokemonNames> getRepoByID(String pokemonName);
+    @Query("SELECT * FROM repos WHERE name = :pokemonName LIMIT 1")
+    LiveData<PokemonRepo> getRepoByID(String pokemonName);
 
 }

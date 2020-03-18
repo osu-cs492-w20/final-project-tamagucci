@@ -1,13 +1,8 @@
 package com.example.theultimatedex;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -23,12 +18,10 @@ import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.example.theultimatedex.data.SavedPokemonRepository;
 import com.example.theultimatedex.data.TypeRepo;
-import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,7 +142,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         stopService(music);
         // MUSIC COMMENT BLOCK END HERE */
 
-        Log.d(TAG,"Prushka: SAFETY CONTROL ROD AXE MAN");
+        Log.d(TAG,"Prushka: SAFETY CONTROL ROD AXE MAN!");
         int size = asyncTasks.size();
         for(int i = 0; i < size; i++) {
             asyncTasks.get(i).cancel(true);
@@ -233,6 +226,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     public void loadPoke(String url) {
         new PokeLoad().execute(url);
     }
+
 
 
     public class GenLoad extends AsyncTask<String, Void, String> {

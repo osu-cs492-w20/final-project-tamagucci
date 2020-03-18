@@ -7,8 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-//@Database(entities = {PokemonRepo.class}, version = 1)
-@Database(entities = {savedPokemonNames.class}, version = 1)
+@Database(entities = {PokemonRepo.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract SavedPokemonDao savedPokemonDao();
     private static volatile AppDatabase INSTANCE;

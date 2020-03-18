@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.theultimatedex.data.PokemonRepo;
-import com.example.theultimatedex.data.savedPokemonNames;
 
 import java.util.List;
 
@@ -39,9 +38,9 @@ public class SavedPokemonActivity extends AppCompatActivity implements PokemonAd
                 new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(SavedReposViewModel.class);
 
-        mViewModel.getAllRepos().observe(this, new Observer<List<savedPokemonNames>>() {
+        mViewModel.getAllRepos().observe(this, new Observer<List<PokemonRepo>>() {
             @Override
-            public void onChanged(List<savedPokemonNames> PokemonRepos) {
+            public void onChanged(List<PokemonRepo> PokemonRepos) {
                 //mPokemonAdapter.updateSearchResults(PokemonRepos);
             }
         });

@@ -22,10 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.theultimatedex.data.PokemonRepo;
-import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.PokeUtils;
-
-import org.w3c.dom.Text;
 
 public class PokeItemDetailActivity extends AppCompatActivity {
     private static final String TAG = PokeItemDetailActivity.class.getSimpleName();
@@ -57,7 +54,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
     private TextView mPokemonHPStat;
 
 
-    savedPokemonNames PokeName;
+    PokemonRepo PokeName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +62,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         Log.d(TAG,"Prushka: onCreate!");
         setContentView(R.layout.poke_detail);
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         // Bind Music Service Here
         doBindService();
@@ -113,7 +111,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         mPokemonHPStat = findViewById(R.id.poke_detail_stat_HP);
 
 
-        PokeName = new savedPokemonNames();
+        PokeName = new PokemonRepo();
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_POKEMON_REPO)) {
@@ -144,9 +142,9 @@ public class PokeItemDetailActivity extends AppCompatActivity {
             }
         });
 
-        mViewModel.getRepoByID(PokeName.name).observe(this, new Observer<savedPokemonNames>() {
+        mViewModel.getRepoByID(PokeName.name).observe(this, new Observer<PokemonRepo>() {
             @Override
-            public void onChanged(savedPokemonNames repo) {
+            public void onChanged(PokemonRepo repo) {
                 if (repo != null) {
                     Log.d("UltimateDex/PokeItemDet", "Pokemon is Saved.");
                     mIsSaved = true;
@@ -270,7 +268,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         return output;
     }
 
-    // MUSIC COMMENT BLOCK START HERE /*
+    // MUSIC COMMENT BLOCK START HERE
+    /*
     private boolean mIsBound = false;
     private MusicService mServ;
     private ServiceConnection Scon =new ServiceConnection(){
