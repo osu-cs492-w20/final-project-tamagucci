@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import org.w3c.dom.Text;
@@ -56,6 +57,7 @@ public class PokeItemDetailActivity extends AppCompatActivity {
     private TextView mPokemonHPStat;
 
 
+    savedPokemonNames PokeName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +112,9 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         mPokemonAttackStat = findViewById(R.id.poke_detail_stat_attack);
         mPokemonHPStat = findViewById(R.id.poke_detail_stat_HP);
 
+
+        PokeName = new savedPokemonNames();
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_POKEMON_REPO)) {
             Log.d(TAG,"Prushka: Intent not null and has Extra!");
@@ -125,19 +130,23 @@ public class PokeItemDetailActivity extends AppCompatActivity {
                 if (mRepo != null) {
                     if (!mIsSaved) {
                         Log.d("UltimateDex/PokeItemDet", "Adding Pokemon to Saved: " + mRepo.name);
-                        mViewModel.insertSavedRepo(mRepo);
+
+                        PokeName.name = mRepo.name;
+                        mViewModel.insertSavedRepo(PokeName);
                     } else {
                         Log.d("UltimateDex/PokeItemDet", "Removing Pokemon from Saved: "+ mRepo.name);
-                        mViewModel.deleteSavedRepo(mRepo);
+
+                        PokeName.name = mRepo.name;
+                        mViewModel.deleteSavedRepo(PokeName);
                     }
                 }
 
             }
         });
 
-        mViewModel.getRepoByID(mRepo.id).observe(this, new Observer<PokemonRepo>() {
+        mViewModel.getRepoByID(PokeName.name).observe(this, new Observer<savedPokemonNames>() {
             @Override
-            public void onChanged(PokemonRepo repo) {
+            public void onChanged(savedPokemonNames repo) {
                 if (repo != null) {
                     Log.d("UltimateDex/PokeItemDet", "Pokemon is Saved.");
                     mIsSaved = true;
