@@ -22,6 +22,7 @@ import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.example.theultimatedex.data.SavedPokemonRepository;
 import com.example.theultimatedex.data.TypeRepo;
+import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
 
@@ -226,7 +227,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
         @Override
         protected String doInBackground(String... strings) {
-            LiveData<List<PokemonRepo>> mRepo = mSavedPokemon.getAllRepos();
+            LiveData<List<savedPokemonNames>> mRepo = mSavedPokemon.getAllRepos();
             int size = mSavedPokemon.getRepoCount();
             // Just have to put names from mRepo into mPokemonSaved
 
