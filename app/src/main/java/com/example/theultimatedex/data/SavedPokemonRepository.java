@@ -17,11 +17,11 @@ public class SavedPokemonRepository {
         mDAO = db.savedPokemonDao();
     }
 
-    public void insertSavedRepo(savedPokemonNames savedNames) {
+    public void insertSavedRepo(PokemonRepo savedNames) {
         new InsertAsyncTask(mDAO).execute(savedNames);
     }
 
-    public void deleteSavedRepo(savedPokemonNames savedNames) {
+    public void deleteSavedRepo(PokemonRepo savedNames) {
         new DeleteAsyncTask(mDAO).execute(savedNames);
     }
 
@@ -29,38 +29,38 @@ public class SavedPokemonRepository {
         return mDAO.getRepoCount();
     }
 
-    public LiveData<List<savedPokemonNames>> getAllRepos() {
+    public LiveData<List<PokemonRepo>> getAllRepos() {
         return mDAO.getAllRepos();
     }
 
-    public LiveData<savedPokemonNames> getRepoByID(String pokemonID) {
+    public LiveData<PokemonRepo> getRepoByID(String pokemonID) {
         return mDAO.getRepoByID(pokemonID);
     }
 
 
 
-    private static class InsertAsyncTask extends AsyncTask<savedPokemonNames, Void, Void> {
+    private static class InsertAsyncTask extends AsyncTask<PokemonRepo, Void, Void> {
         private SavedPokemonDao mAsyncTaskDAO;
         InsertAsyncTask(SavedPokemonDao dao) {
             mAsyncTaskDAO = dao;
         }
 
         @Override
-        protected Void doInBackground(savedPokemonNames... savedNames) {
+        protected Void doInBackground(PokemonRepo... savedNames) {
             Log.d("UltimateDex/SavedPkRepo","Inserting "+ savedNames[0].name +" into Database.");
             mAsyncTaskDAO.insert(savedNames[0]);
             return null;
         }
     }
 
-    private static class DeleteAsyncTask extends AsyncTask<savedPokemonNames, Void, Void> {
+    private static class DeleteAsyncTask extends AsyncTask<PokemonRepo, Void, Void> {
         private SavedPokemonDao mAsyncTaskDAO;
         DeleteAsyncTask(SavedPokemonDao dao) {
             mAsyncTaskDAO = dao;
         }
 
         @Override
-        protected Void doInBackground(savedPokemonNames... savedNames) {
+        protected Void doInBackground(PokemonRepo... savedNames) {
             Log.d("UltimateDex/SavedPkRepo","Deleting "+ savedNames[0].name +" from Database.");
             mAsyncTaskDAO.delete(savedNames[0]);
             return null;

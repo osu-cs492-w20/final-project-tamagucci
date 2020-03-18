@@ -1,20 +1,14 @@
 package com.example.theultimatedex;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,12 +16,10 @@ import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
 import com.example.theultimatedex.data.SavedPokemonRepository;
 import com.example.theultimatedex.data.TypeRepo;
-import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,7 +140,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         stopService(music);
         // MUSIC COMMENT BLOCK END HERE */
 
-        Log.d(TAG,"Prushka: SAFETY CONTROL ROD AXE MAN");
+        Log.d(TAG,"Prushka: SAFETY CONTROL ROD AXE MAN!");
         int size = asyncTasks.size();
         for(int i = 0; i < size; i++) {
             asyncTasks.get(i).cancel(true);
@@ -167,12 +159,12 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
 
 
-    public void unloadFavoriteResults(int size, List<PokemonRepo> mREPO) {
+    public void unloadFavoriteResults(int size, List<String> mREPO) {
         Log.d(TAG,"Prushka: size = " + size);
         for(int i = 0; i < size; i++) {
-            PokemonRepo poke = mREPO.get(i);
-            Log.d(TAG,"Prushka: poke at " + i + ": " + poke.name);
-            String url = PokeUtils.buildPokeURL("pokemon/" + poke.name);
+            String poke = mREPO.get(i);
+            Log.d(TAG,"Prushka: poke at " + i + ": " + poke);
+            String url = PokeUtils.buildPokeURL("pokemon/" + poke);
             loadPoke(url);
         }
     }
@@ -223,17 +215,24 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         new PokeLoad().execute(url);
     }
 
+    // Favorites list Async task
+
     public class FavLoad extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
-            LiveData<List<savedPokemonNames>> mRepo = mSavedPokemon.getAllRepos();
-            int size = mSavedPokemon.getRepoCount();
-            //unloadFavoriteResults(size, mRepo.getValue());
+            List<PokemonRepo> mRepo = (List<PokemonRepo>) mSavedPokemon.getAllRepos();
+            ArrayList<String> mFavoritePokemon = new ArrayList<>();
+            for(int i = 0; i < mRepo.size(); i++) {
+                Log.d(TAG,"Prushka: name = " + mRepo.get(i).name);
+                mFavoritePokemon.add(mRepo.get(i).name);
+            }
+            unloadFavoriteResults(mFavoritePokemon.size(), mFavoritePokemon);
             return "YAY!";
         }
     }
 
+    // Other Async Tasks
 
     public class GenLoad extends AsyncTask<String, Void, String> {
 
