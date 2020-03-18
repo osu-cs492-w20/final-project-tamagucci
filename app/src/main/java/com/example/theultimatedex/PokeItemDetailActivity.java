@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,10 +23,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.SavedPokemonRepository;
 import com.example.theultimatedex.data.savedPokemonNames;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.widget.Toast.makeText;
 
 public class PokeItemDetailActivity extends AppCompatActivity {
     private static final String TAG = PokeItemDetailActivity.class.getSimpleName();
@@ -58,6 +65,8 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
 
     savedPokemonNames PokeName;
+    private SavedPokemonRepository mSavedPokemon;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,30 +133,64 @@ public class PokeItemDetailActivity extends AppCompatActivity {
 
         final ImageView addPokemonIV = findViewById(R.id.iv_repo_add_pokemon);
         addPokemonIV.setOnClickListener(new View.OnClickListener() {
+
+/*
+            List<savedPokemonNames> savedPokemonNames = mSavedPokemon.getAllRepos().observe(this, new Observer<List<savedPokemonNames>>() {
+                @Override
+                public void onChanged(List<savedPokemonNames> savedPokemonNames) {
+                    ArrayList<String> mPokemonSaved = new ArrayList<>();
+                    for(Integer i = 0; i < savedPokemonNames.size(); i++) {
+                        mPokemonSaved.add(savedPokemonNames.get(i).name);
+                        Log.d(TAG,"Prushka: name = ");
+                    }
+                    handleSave(savedPokemonNames.size(),mPokemonSaved);
+                }
+            });
+
+ */
+
+
             @Override
             public void onClick(View v) {
+
 
                 if (mRepo != null) {
                     if (!mIsSaved) {
                         Log.d("UltimateDex/PokeItemDet", "Adding Pokemon to Saved: " + mRepo.name);
-
+                        toastFavorited(mRepo.name);
+                        mIsSaved = true;
                         PokeName.name = mRepo.name;
                         mViewModel.insertSavedRepo(PokeName);
                     } else {
                         Log.d("UltimateDex/PokeItemDet", "Removing Pokemon from Saved: "+ mRepo.name);
-
+                        toastUnfavorited(mRepo.name);
+                        mIsSaved = false;
                         PokeName.name = mRepo.name;
                         mViewModel.deleteSavedRepo(PokeName);
                     }
                 }
 
+
+
+/*
+                if (mIsSaved == true) {
+                    addPokemonIV.setImageResource(R.drawable.ic_action_remove);
+                } else {
+                    addPokemonIV.setImageResource(R.drawable.ic_action_add);
+                }
+
+ */
+
             }
         });
+
+
+
 
         mViewModel.getRepoByID(PokeName.name).observe(this, new Observer<savedPokemonNames>() {
             @Override
             public void onChanged(savedPokemonNames repo) {
-                if (repo != null) {
+                if (mRepo.name != PokeName.name) {
                     Log.d("UltimateDex/PokeItemDet", "Pokemon is Saved.");
                     mIsSaved = true;
                     addPokemonIV.setImageResource(R.drawable.ic_action_remove);
@@ -158,6 +201,10 @@ public class PokeItemDetailActivity extends AppCompatActivity {
                 }
             }
         });
+        
+
+
+
 
 
     }
@@ -269,6 +316,33 @@ public class PokeItemDetailActivity extends AppCompatActivity {
         output += input;
         return output;
     }
+
+    public void toastFavorited(String name) {
+        Toast.makeText(this, name + " Favorited!", Toast.LENGTH_LONG).show();
+    }
+    public void toastUnfavorited(String name) {
+        Toast.makeText(this, name + " Unfavorited!", Toast.LENGTH_LONG).show();
+    }
+
+    public void handleSave(int size, List<String> mREPO) {
+        for (int i = 0; i < mREPO.size(); i++) {
+            if (mREPO.get(i) == mRepo.name) {
+                // Pokemon is already saved
+                mIsSaved = false;
+                toastFavorited(mRepo.name);
+                PokeName.name = mRepo.name;
+                mViewModel.deleteSavedRepo(PokeName);
+            }
+            else {
+                Log.d("UltimateDex/PokeItemDet", "Adding Pokemon to Saved: " + mRepo.name);
+                mIsSaved = true;
+                toastUnfavorited(mRepo.name);
+                PokeName.name = mRepo.name;
+                mViewModel.insertSavedRepo(PokeName);
+            }
+        }
+    }
+
 
     // MUSIC COMMENT BLOCK START HERE /*
     private boolean mIsBound = false;
