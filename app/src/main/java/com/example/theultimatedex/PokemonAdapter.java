@@ -84,10 +84,10 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonI
                 String pokemonNumber = "#" + PadLeft(pokemonRepo.id,'0',3);
 
                 mPokemonNumberTV.setText(pokemonNumber);
-
-                String iconURL = PokeUtils.buildIconURL(pokemonRepo.sprites.front_default);
-                Glide.with(mPokemonSpriteIV.getContext()).load(iconURL).into(mPokemonSpriteIV);
-
+                if(pokemonRepo.sprites != null && pokemonRepo.sprites.front_default != null) {
+                    String iconURL = PokeUtils.buildIconURL(pokemonRepo.sprites.front_default);
+                    Glide.with(mPokemonSpriteIV.getContext()).load(iconURL).into(mPokemonSpriteIV);
+                }
         }
 
 

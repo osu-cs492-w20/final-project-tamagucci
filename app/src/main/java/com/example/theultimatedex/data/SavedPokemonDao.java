@@ -18,6 +18,9 @@ public interface SavedPokemonDao {
     @Delete
     void delete(PokemonRepo repo);
 
+    @Query("SELECT count(*) FROM repos")
+    int getRepoCount();
+
     @Query("SELECT * FROM repos")
     LiveData<List<PokemonRepo>> getAllRepos();
 

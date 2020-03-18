@@ -25,6 +25,10 @@ public class SavedPokemonRepository {
         new DeleteAsyncTask(mDAO).execute(repo);
     }
 
+    public int getRepoCount() {
+        return mDAO.getRepoCount();
+    }
+
     public LiveData<List<PokemonRepo>> getAllRepos() {
         return mDAO.getAllRepos();
     }

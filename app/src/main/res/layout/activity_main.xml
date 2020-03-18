@@ -22,7 +22,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:padding="15dp" />
+        android:padding="10dp" />
 
     <TextView
         android:id="@+id/tv_gen_select"
@@ -34,10 +34,8 @@
         android:background="@drawable/share_rounded_corner_with_border"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
     />
 
     <TextView
@@ -50,10 +48,8 @@
         android:background="@drawable/share_rounded_corner_with_border"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
     />
 
     <TextView
@@ -66,10 +62,8 @@
         android:background="@drawable/share_rounded_corner_with_border"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
     />
 
     <TextView
@@ -82,10 +76,8 @@
         android:background="@drawable/share_rounded_corner_with_border"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:padding="10dp"
     />
 
 

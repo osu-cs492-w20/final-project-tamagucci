@@ -45,7 +45,8 @@ public class TypeActivity extends AppCompatActivity {
         Log.d(TAG,"Prushka: onCreate");
 
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         // Bind Music Service Here
         doBindService();
@@ -215,7 +216,8 @@ public class TypeActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    // MUSIC COMMENT BLOCK START HERE /*
+    // MUSIC COMMENT BLOCK START HERE
+    /*
 
     private boolean mIsBound = false;
     private MusicService mServ;

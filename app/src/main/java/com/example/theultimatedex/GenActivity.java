@@ -37,7 +37,8 @@ public class GenActivity extends AppCompatActivity {
         Log.d(TAG,"Prushka: GenActivity onCreate");
 
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         // Bind Music Service Here
         doBindService();
@@ -131,7 +132,8 @@ public class GenActivity extends AppCompatActivity {
 
     }
 
-    // MUSIC COMMENT BLOCK START HERE /*
+    // MUSIC COMMENT BLOCK START HERE
+    /*
 
     private boolean mIsBound = false;
     private MusicService mServ;
