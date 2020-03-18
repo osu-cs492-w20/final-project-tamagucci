@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String POKE_RV = "POKE_RV";
 
     HomeWatcher mHomeWatcher;
 
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         // Bind Music Service Here
         doBindService();
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         mFavePokemon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,12 +122,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void openFavoritePokemon() {
         Log.d("UltimateDex/MainActivit", "Opening Fave Pokemon Activity");
-        Intent intent = new Intent(this, SavedPokemonActivity.class);
+        Intent intent = new Intent(this, PokeActivity.class);
+        intent.putExtra(POKE_RV,"FAV_AC");
         startActivity(intent);
     }
 
 
-    // MUSIC COMMENT BLOCK START HERE /*
+    // MUSIC COMMENT BLOCK START HERE
+    /*
 
     private boolean mIsBound = false;
     private MusicService mServ;

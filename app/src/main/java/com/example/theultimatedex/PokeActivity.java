@@ -14,16 +14,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.theultimatedex.data.GenerationRepo;
 import com.example.theultimatedex.data.PokemonRepo;
+import com.example.theultimatedex.data.SavedPokemonRepository;
 import com.example.theultimatedex.data.TypeRepo;
 import com.example.theultimatedex.utils.NetworkUtils;
 import com.example.theultimatedex.utils.PokeUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,12 +54,15 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     private TextView mPokeError;
     private PokeAdapter mPokeAdapter;
 
+    private SavedPokemonRepository mSavedPokemon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"Prushka: onCreate");
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         // Bind Music Service Here
         doBindService();
@@ -95,6 +101,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         mPokeError = findViewById(R.id.Poke_tv_loading_error_message);
         mPokemonToShow = new ArrayList<>();
 
+        mSavedPokemon = new SavedPokemonRepository(getApplication());
+
         mTypNum = "0";
         mGenNum = "0";
         mFavNum = "0";
@@ -117,10 +125,10 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
                 url = PokeUtils.buildPokeURL("type/" + mTypNum);
                 loadTyp(url);
                 break;
-            //case: "FAV_AC":
-                //Log.d("UltimateDex/PokeActiv","FAV_AC");
-
-
+            case "FAV_AC":
+                Log.d(TAG,"FAV_AC");
+                loadFav();
+                break;
             default:
                 break;
         }
@@ -130,7 +138,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     protected void onDestroy() {
         super.onDestroy();
 
-        // MUSIC COMMENT BLOCK START HERE /*
+        // MUSIC COMMENT BLOCK START HERE
+        /*
 
         doUnbindService();
         Intent music = new Intent();
@@ -138,7 +147,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         stopService(music);
         // MUSIC COMMENT BLOCK END HERE */
 
-
+        Log.d(TAG,"Prushka: SAFETY CONTROL ROD AXE MAN");
         int size = asyncTasks.size();
         for(int i = 0; i < size; i++) {
             asyncTasks.get(i).cancel(true);
@@ -152,6 +161,19 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         asyncTasks.clear();
         Log.d(TAG,"Canceled " + size + " tasks!");
         Log.d(TAG,"Thank you for your cooperation and have a nice day!");
+    }
+
+
+
+
+    public void unloadFavoriteResults(int size, List<PokemonRepo> mREPO) {
+        Log.d(TAG,"Prushka: size = " + size);
+        for(int i = 0; i < size; i++) {
+            PokemonRepo poke = mREPO.get(i);
+            Log.d(TAG,"Prushka: poke at " + i + ": " + poke.name);
+            String url = PokeUtils.buildPokeURL("pokemon/" + poke.name);
+            loadPoke(url);
+        }
     }
 
     public void unloadGenerationResults(List<GenerationRepo> generationItems) {
@@ -184,6 +206,10 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         startActivity(intent);
     }
 
+    public void loadFav() {
+        new FavLoad().execute();
+    }
+
     public void loadGen(String url) {
         new GenLoad().execute(url);
     }
@@ -194,6 +220,17 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
     public void loadPoke(String url) {
         new PokeLoad().execute(url);
+    }
+
+    public class FavLoad extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            LiveData<List<PokemonRepo>> mRepo = mSavedPokemon.getAllRepos();
+            int size = mSavedPokemon.getRepoCount();
+            unloadFavoriteResults(size,mRepo.getValue());
+            return "YAY!";
+        }
     }
 
 
@@ -373,7 +410,8 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     }
 
 
-    // MUSIC COMMENT BLOCK START HERE /*
+    // MUSIC COMMENT BLOCK START HERE
+    /*
 
     private boolean mIsBound = false;
     private MusicService mServ;
