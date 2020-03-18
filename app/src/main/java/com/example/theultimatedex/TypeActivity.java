@@ -46,7 +46,7 @@ public class TypeActivity extends AppCompatActivity {
 
 
         // MUSIC COMMENT BLOCK START HERE
-        /*
+        //*
 
         // Bind Music Service Here
         doBindService();
@@ -217,7 +217,7 @@ public class TypeActivity extends AppCompatActivity {
 
     }
     // MUSIC COMMENT BLOCK START HERE
-    /*
+    //*
 
     private boolean mIsBound = false;
     private MusicService mServ;

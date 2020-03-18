@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +57,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         Log.d(TAG,"Prushka: onCreate");
 
         // MUSIC COMMENT BLOCK START HERE
-        /*
+        //*
 
         // Bind Music Service Here
         doBindService();
@@ -132,7 +134,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         super.onDestroy();
 
         // MUSIC COMMENT BLOCK START HERE
-        /*
+        //*
 
         doUnbindService();
         Intent music = new Intent();
@@ -161,7 +163,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
     public void unloadFavoriteResults(int size, List<String> mREPO) {
         Log.d(TAG,"Prushka: size = " + size);
-        for(int i = 0; i < size; i++) {
+        for(Integer i = 0; i < size; i++) {
             String poke = mREPO.get(i);
             Log.d(TAG,"Prushka: poke at " + i + ": " + poke);
             String url = PokeUtils.buildPokeURL("pokemon/" + poke);
@@ -200,7 +202,17 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     }
 
     public void loadFav() {
-        new FavLoad().execute();
+        mSavedPokemon.getAllRepos().observe(this, new Observer<List<savedPokemonNames>>() {
+            @Override
+            public void onChanged(List<savedPokemonNames> savedPokemonNames) {
+                ArrayList<String> mPokemonSaved = new ArrayList<>();
+                for(Integer i = 0; i < savedPokemonNames.size(); i++) {
+                    mPokemonSaved.add(savedPokemonNames.get(i).name);
+                    Log.d(TAG,"Prushka: name = ");
+                }
+                unloadFavoriteResults(savedPokemonNames.size(),mPokemonSaved);
+            }
+        });
     }
 
     public void loadGen(String url) {
@@ -215,24 +227,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
         new PokeLoad().execute(url);
     }
 
-    // Favorites list Async task
 
-    public class FavLoad extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            List<PokemonRepo> mRepo = (List<PokemonRepo>) mSavedPokemon.getAllRepos();
-            ArrayList<String> mFavoritePokemon = new ArrayList<>();
-            for(int i = 0; i < mRepo.size(); i++) {
-                Log.d(TAG,"Prushka: name = " + mRepo.get(i).name);
-                mFavoritePokemon.add(mRepo.get(i).name);
-            }
-            unloadFavoriteResults(mFavoritePokemon.size(), mFavoritePokemon);
-            return "YAY!";
-        }
-    }
-
-    // Other Async Tasks
 
     public class GenLoad extends AsyncTask<String, Void, String> {
 
@@ -369,15 +364,6 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
     }
 
 
-    public class FaveLoad extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            return null;
-        }
-    }
-
-
     public class loadingIndicator extends AsyncTask<Void, Void, String> {
         boolean isFinished;
         @Override
@@ -411,7 +397,7 @@ public class PokeActivity extends AppCompatActivity implements PokeAdapter.pokeI
 
 
     // MUSIC COMMENT BLOCK START HERE
-    /*
+    //*
 
     private boolean mIsBound = false;
     private MusicService mServ;
